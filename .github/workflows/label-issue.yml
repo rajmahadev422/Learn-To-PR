@@ -7,11 +7,6 @@ on:
       - reopened
       - edited
       - unlabeled
-  pull_request:
-    types:
-      - opened
-      - edited
-      - reopened
 
 permissions:
   issues: write
@@ -37,3 +32,4 @@ jobs:
                 labels
               });
             }
+
