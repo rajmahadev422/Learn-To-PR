@@ -1,7 +1,8 @@
 name: Auto label Issues
+
 on:
   issues:
-      types: [opened, reopened, edited, unlabeled]
+    types: [opened, reopened, edited, unlabeled]
 
 jobs:
   label-issue:
@@ -16,7 +17,7 @@ jobs:
         with:
           script: |
             const title = context.payload.issue.title.toLowerCase();
-            const labels = [good-first-issue];
+            const labels = ['good-first-issue'];
 
             if (labels.length > 0) {
               await github.rest.issues.addLabels({
