@@ -2,14 +2,18 @@ name: Auto label Issues
 
 on:
   issues:
-    types: [opened, reopened, edited, unlabeled]
+    types: 
+      - opened
+      - reopened
+      - edited
+      - unlabeled
+
+permissions:
+  issues: write
 
 jobs:
   label-issue:
     runs-on: ubuntu-latest
-
-    permissions:
-      issues: write
 
     steps:
       - name: Lable Issues

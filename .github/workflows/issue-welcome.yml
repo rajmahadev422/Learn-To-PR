@@ -1,8 +1,10 @@
-name: Issue Welcome
+name: Auto Issue Welcome Message
 
 on:
   issues:
-    types: [opened]
+    types:
+      - opened
+      - reopened
 
 permissions:
   issues: write
@@ -12,18 +14,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - name: Add welcome comment
+        uses: actions/github-script@v7
         with:
-          node-version: 20
+          script: |
+            const issueNo = context.issue.number;
+            const msg = `👋 Thank you for opening an issue!
 
-      - name: Install Octokit
-        run: npm install @octokit/rest
+              Welcome to **OpenSource Playground** 🚀
 
-      - name: Run welcome action
-        uses: ./.github/actions/issue-welcome
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              We appreciate your contribution.  
+              A maintainer will review this issue soon.
+
+              ### 📚 While waiting you can:
+              - Read the contribution guide
+              - Explore beginner-friendly issues
+              - Try your first pull request
+
+              Happy Coding! 🎉`;
+
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issueNo,
+              body: msg
+            });
