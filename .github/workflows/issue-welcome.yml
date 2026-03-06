@@ -36,6 +36,6 @@ jobs:
             github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              issueNo,
+              issue_number: issueNo,
               body: msg
             });
