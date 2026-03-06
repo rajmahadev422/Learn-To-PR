@@ -1,1 +1,53 @@
 
+name: PR Welcome
+
+on:
+  pull_request:
+    types: [opened, edited]
+
+permissions:
+  pull-requests: write
+  issues: write
+
+jobs:
+  label-and-welcome:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Add label to PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+              labels: ["pr-submitted"]
+            });
+
+      - name: Welcome Comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            const author = context.payload.pull_request.user.login;
+
+            const msg = `👋 Thanks @${author} for your Pull Request!
+
+            🚀 We really appreciate your contribution.
+
+            A maintainer will review your PR soon. Please make sure:
+            - The code follows project guidelines
+            - You added proper description
+            - No merge conflicts exist
+
+            Happy contributing! 🎉`;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+              body: msg
+            });
