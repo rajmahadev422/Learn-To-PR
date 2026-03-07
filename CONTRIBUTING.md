@@ -1,19 +1,35 @@
 # Contributing to Learn To PR
 
-## Quick Start
-1. Fork the repo
-2. Clone your fork
-3. Create a branch
-4. Make changes
-5. Push and create PR
+---
+# 🌟 Contributors
 
-## Finding Issues
-Look for labels:
-- 🎨 good-first-issue
-- 🌱 beginner-friendly
+Thank you to everyone who has taken their first step into open source here!  
+Every name on this list made their very first (or early) GitHub contribution. 
 
-## PR Guidelines
-- One feature/fix per PR
-- Follow existing code style
-- Update documentation
-- Add yourself to contributors list
+---
+
+## How to Add Your Name
+
+1. Fork this repository
+2. Open this file (`CONTRIBUTORS.md`)
+3. Add your name at the bottom of the list in this format:
+```
+- Your Name (@yourgithubusername)
+```
+4. Commit, push, and open a Pull Request!
+
+---
+
+## 🎉 Hall of Fame
+
+*Be the first to add your name below!*
+
+<!-- Add your name below this line -->
+
+---
+
+<div align="center">
+
+*No contribution is too small. Welcome to open source! 💚*
+
+</div>
