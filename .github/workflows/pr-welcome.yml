@@ -11,7 +11,7 @@ jobs:
     
     permissions:
       issues: write
-      pull_requests: write
+      contents: write
     
     steps:
       - name: Add label to PR
