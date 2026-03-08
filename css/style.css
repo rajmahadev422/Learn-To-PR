@@ -7,3 +7,7 @@ html {
   box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.3);
   transition: box-shadow 0.2s;
 }
+
+html::-webkit-scrollbar {
+  display: none;
+}
