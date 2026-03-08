@@ -1,0 +1,162 @@
+<style>
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+
+    33% {
+      transform: translateY(-12px) rotate(1deg);
+    }
+
+    66% {
+      transform: translateY(6px) rotate(-1deg);
+    }
+  }
+
+  .animate-float {
+    animation: float 5s ease-in-out infinite;
+  }
+
+  @keyframes pulse-gentle {
+
+    0%,
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    50% {
+      opacity: 0.9;
+      transform: scale(1.02);
+    }
+  }
+
+  .animate-pulse-gentle {
+    animation: pulse-gentle 3s infinite;
+  }
+
+  @keyframes blink {
+
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0.3;
+    }
+  }
+
+  .animate-blink {
+    animation: blink 2s infinite;
+  }
+
+  /* slow spin for decorative elements */
+  @keyframes slow-spin {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-slow-spin {
+    animation: slow-spin 12s linear infinite;
+  }
+</style>
+<div
+  class="bg-gradient-to-br from-indigo-50 via-white to-slate-100 min-h-screen flex items-center justify-center p-4 font-sans antialiased">
+
+  <!-- main 404 card / container with subtle glassmorphism -->
+  <div class="max-w-3xl w-full relative">
+
+    <!-- decorative background elements (animated) -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute -top-10 -right-10 w-64 h-64 bg-indigo-200/30 rounded-full blur-3xl animate-pulse-gentle">
+      </div>
+      <div class="absolute -bottom-16 -left-10 w-80 h-80 bg-sky-200/30 rounded-full blur-3xl animate-slow-spin"></div>
+    </div>
+
+    <!-- main content panel (white with soft border) -->
+    <div
+      class="relative bg-white/70 backdrop-blur-sm border border-white/50 shadow-2xl rounded-3xl p-8 md:p-12 lg:p-16 text-center">
+
+      <!-- animated 404 graphic (floating illustration) -->
+      <div class="relative flex justify-center items-center mb-6 md:mb-8">
+        <!-- background rings (slow spin) -->
+        <div class="absolute w-40 h-40 md:w-56 md:h-56 border-2 border-indigo-200/50 rounded-full animate-slow-spin">
+        </div>
+        <div class="absolute w-28 h-28 md:w-40 md:h-40 border-2 border-indigo-300/30 rounded-full animate-slow-spin"
+          style="animation-direction: reverse;"></div>
+
+        <!-- main floating 404 text + pr mic / message icon -->
+        <div class="relative animate-float flex items-center gap-2 md:gap-4">
+          <span class="text-7xl md:text-8xl lg:text-9xl font-black text-indigo-600 drop-shadow-lg">4</span>
+          <!-- animated 'PR' badge that blinks / spins slightly -->
+          <div class="relative">
+            <div class="absolute inset-0 bg-indigo-400/20 rounded-full blur-md animate-pulse-gentle"></div>
+            <span
+              class="relative text-5xl md:text-7xl lg:text-8xl font-black text-indigo-500 bg-white/50 px-4 py-2 rounded-2xl rotate-2 shadow-xl border border-indigo-200 inline-block animate-blink">🎤</span>
+          </div>
+          <span class="text-7xl md:text-8xl lg:text-9xl font-black text-indigo-600 drop-shadow-lg">4</span>
+        </div>
+      </div>
+
+      <!-- friendly message -->
+      <h1 class="text-3xl md:text-4xl font-bold text-slate-800 mt-6 mb-3">page not found</h1>
+      <p class="text-slate-600 max-w-md mx-auto text-base md:text-lg">
+        looks like this pitch didn't land. the page you're looking for might have been moved or never existed.
+      </p>
+
+      <!-- fun pr / 404 metaphor line (small) -->
+      <div class="mt-4 flex items-center justify-center gap-2 text-indigo-500 text-sm">
+        <span class="h-px w-8 bg-indigo-300"></span>
+        <span class="font-medium">even PR pros get 404s</span>
+        <span class="h-px w-8 bg-indigo-300"></span>
+      </div>
+
+      <!-- search or go back suggestion (with animation on hover) -->
+      <div class="mt-8 md:mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a href="/"
+          class="group relative bg-indigo-600 text-white px-8 py-3 rounded-full font-semibold shadow-lg shadow-indigo-200 hover:bg-indigo-700 transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2">
+          <span>← back to homepage</span>
+          <!-- tiny animated arrow -->
+          <span class="group-hover:translate-x-1 transition-transform">🏠</span>
+        </a>
+        <a href="#" class="text-slate-500 hover:text-indigo-600 transition flex items-center gap-1 text-sm font-medium">
+          <span>report a broken link</span>
+          <span>📢</span>
+        </a>
+      </div>
+
+      <!-- fun little stat / tip (beginners friendly) -->
+      <div class="mt-10 p-5 bg-indigo-50/70 rounded-2xl border border-indigo-100 inline-block mx-auto text-left">
+        <div class="flex items-start gap-3">
+          <span class="text-2xl animate-blink">📌</span>
+          <div class="text-xs md:text-sm text-slate-600">
+            <span class="font-semibold text-indigo-800">PR beginner tip:</span> 404s are like media rejections — just
+            pivot. try our
+            <a href="#" class="text-indigo-600 underline decoration-dotted hover:decoration-solid">pitch simulator</a>
+            instead.
+          </div>
+        </div>
+      </div>
+
+      <!-- micro animation: bouncing dots (optional footer) -->
+      <div class="mt-8 flex justify-center gap-2 text-indigo-300">
+        <span class="w-2 h-2 bg-indigo-300 rounded-full animate-bounce" style="animation-delay: 0s;"></span>
+        <span class="w-2 h-2 bg-indigo-400 rounded-full animate-bounce" style="animation-delay: 0.1s;"></span>
+        <span class="w-2 h-2 bg-indigo-500 rounded-full animate-bounce" style="animation-delay: 0.2s;"></span>
+      </div>
+    </div>
+
+    <!-- tiny footer credit (hidden on very small) -->
+    <p class="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-slate-400 whitespace-nowrap">· Learn To PR ·
+      every page is a pitch ·</p>
+  </div>
+
+</div>
