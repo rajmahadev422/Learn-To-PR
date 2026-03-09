@@ -2,15 +2,10 @@ name: Auto label Issues
 
 on:
   issues:
-    types:
-      - opened
-      - reopened
-      - edited
-      - unlabeled
+    types: [opened, reopened, edited]
 
 permissions:
   issues: write
-  pull-requests: write
   contents: read
 
 jobs:
@@ -18,38 +13,51 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        
       - name: Run Gemini Labeler
         id: gemini_call
         uses: google-github-actions/run-gemini-cli@v1
         with:
           gemini-api-key: ${{ secrets.GEMINI_API_KEY }}
           input_prompt: |
-            Analyze the following GitHub issue:
+            Analyze this GitHub issue.
 
             Title: ${{ github.event.issue.title }}
             Body: ${{ github.event.issue.body }}
 
-            Available Labels:
+            Available labels:
             bug, enhancement, documentation, question, help wanted, good first issue
 
-            Choose the 1-2 most relevant labels.
-            Return ONLY a comma-separated list.
+            Choose the 1 or 2 most relevant labels.
+            Return ONLY comma-separated labels.
 
       - name: Apply Labels
         uses: actions/github-script@v7
         with:
           script: |
-            const labels = "${{ steps.gemini_call.outputs.response }}"
+            const allowed = [
+              "bug",
+              "enhancement",
+              "documentation",
+              "question",
+              "help wanted",
+              "good first issue"
+            ];
+
+            const output = `${{ steps.gemini_call.outputs.response }}`;
+
+            const labels = output
               .split(',')
-              .map(l => l.trim());
+              .map(l => l.trim())
+              .filter(l => allowed.includes(l));
+
+            if (labels.length === 0) {
+              console.log("No valid labels returned.");
+              return;
+            }
 
             await github.rest.issues.addLabels({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
-              labels: labels
+              labels
             });
-            
