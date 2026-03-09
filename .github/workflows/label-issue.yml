@@ -35,10 +35,9 @@ jobs:
           ISSUE_TITLE: ${{ github.event.issue.title }}
           ISSUE_BODY: ${{ github.event.issue.body }}
         run: |
-          node <<'EOF'
+          LABELS=$(node <<'EOF'
 
           const { GoogleGenAI } = require("@google/genai");
-          const fs = require("fs");
 
           const ai = new GoogleGenAI({apiKey: process.env.GEMINI_API_KEY });
 
@@ -70,9 +69,10 @@ jobs:
           Issue Body: ${process.env.ISSUE_BODY || ""}
           `;
           const labels = await main(prompt);
-
-          fs.appendFileSync(process.GITHUB_OUTPUT, `labels=${labels}`);
+          console.log(labels);
           EOF
+          )
+          echo "labels=$LABELS" >> $GITHUB_OUTPUT
 
       - name: Apply Labels
         uses: actions/github-script@v7
