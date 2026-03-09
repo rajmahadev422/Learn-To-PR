@@ -17,18 +17,35 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Lable Issues
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Run Gemini Labeler
+        uses: google-github-actions/run-gemini-cli@v1
+        with:
+          gemini-api-key: ${{ secrets.GEMINI_API_KEY }}
+          input_prompt: |
+            Analyze the following GitHub ${{ github.event_name }}:
+            Title: ${{ github.event.issue.title }}
+            Body: ${{ github.event.issue.body }}
+
+            Available Labels: [bug, enhancement, documentation, question, help wanted, good first issue]
+
+            Task: Choose the 1-2 most relevant labels from the list above. 
+            Return ONLY a comma-separated list of label names.
+        id: gemini_call
+      - name: Apply Lables
         uses: actions/github-script@v7
         with:
           script: |
-            const title = context.payload.issue.title.toLowerCase();
-            const labels = ['good-first-issue'];
+            const labels = "${{ steps.gemini_call.outputs.text }}".split(',').map(l => l.trim());
+            const issue_number = context.issue.number;
 
-            if (labels.length > 0) {
-              await github.rest.issues.addLabels({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.issue.number,
-                labels
-              });
-            }
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue_number,
+              labels: labels
+            });
+            
+          
