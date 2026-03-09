@@ -11,6 +11,7 @@ on:
 permissions:
   issues: write
   pull-requests: write
+  contents: read
 
 jobs:
   label:
@@ -34,6 +35,7 @@ jobs:
             Task: Choose the 1-2 most relevant labels from the list above. 
             Return ONLY a comma-separated list of label names.
         id: gemini_call
+        
       - name: Apply Lables
         uses: actions/github-script@v7
         with:
