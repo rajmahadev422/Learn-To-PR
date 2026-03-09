@@ -17,19 +17,75 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Lable Issues
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Dependency
+        run: npm install @google/genai
+
+      - name: Run AI Issue Labeler
+        id: ai
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+        run: |
+          node <<'EOF'
+
+          import { GoogleGenAI } from "@google/genai";
+          import fs from "fs";
+
+          const ai = new GoogleGenAI({apiKey: process.env.GEMINI_API_KEY });
+
+          async function main(prompt) {
+            const response = await ai.models.generateContent({
+              model: "gemini-2.5-flash",
+              contents: prompt,
+              config: {
+                systemInstruction: `
+                  You are a helpful assistant for predicting labels for issu                  es.
+                  Available Labels:
+                    [bug, enhancement, documentation, question, help wanted,                     good first issue, invalid, wontfix]
+
+                    Choose the 1-2 most relevant labels.
+                    Return ONLY javascript array, if not find any label then                    return [].
+                    Eg. ["bug", "help wanted"]
+                `,
+              }
+            });
+            const labels = JSON.parse(response.text);
+            if(!Array.isArray(labels)) return [];
+            return labels;
+          }
+
+          const prompt = `
+          Based on the below issue title and body, give labels.
+
+          Issue Title: ${process.env.ISSUE_TITLE}
+          Issue Body: ${process.env.ISSUE_BODY}
+          `;
+          const labels = await main(prompt);
+
+          fs.appendFileSync(process.GITHUB_OUTPUT, `labels=${labels}`);
+          EOF
+
+      - name: Apply Labels
         uses: actions/github-script@v7
         with:
           script: |
-            const title = context.payload.issue.title.toLowerCase();
-            const labels = ['good-first-issue'];
+            const labels = "${{steps.ai.outputs.labels }}"
 
-            if (labels.length > 0) {
-              await github.rest.issues.addLabels({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.issue.number,
-                labels
-              });
-            }
+            if(labesl.length == 0) return;
+
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              labels
+            });
             
