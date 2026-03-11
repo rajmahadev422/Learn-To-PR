@@ -6,7 +6,7 @@ from datetime import datetime
 import uvicorn
 
 # Create FastAPI instance
-app = FastAPI(
+app FastAPI(
     title="My FastAPI Server",
     description="A simple FastAPI server example",
     version="1.0.0"
