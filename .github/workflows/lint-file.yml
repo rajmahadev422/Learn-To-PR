@@ -1,0 +1,61 @@
+name: Static Analysis
+
+on:
+  push:
+    branches: [main]
+
+  pull_request:
+    branches: [main]
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+
+    outputs:
+      python: ${{ steps.filter.outputs.python }}
+      json: ${{ steps.filter.outputs.json }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Path filter
+        uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            python:
+              - '**/*.py'
+            json:
+              - '**/*.json'
+
+  python-lint:
+    needs: changes
+    if: ${{ needs.changes.outputs.python == 'true' }}
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Ruff
+        run: pip install ruff
+
+      - name: Run ruff
+        run: ruff check --output-format=github .
+
+  json-lint:
+    needs: changes
+    if: ${{ needs.changes.outputs.json == 'true' }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Lint JSON files
+        uses: Rosalun/action-jsonlint@v1
+        with:
+          include: '**/*.json'
+

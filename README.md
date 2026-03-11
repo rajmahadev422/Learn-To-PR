@@ -3,6 +3,7 @@
 ## [Live](https://rajmahadev422.github.io/Learn-To-PR/)
 
 > **Your first step into open source starts here.**  
+
 > A beginner-friendly repository to practice creating Issues and Pull Requests — no prior experience needed!
 
 ---
@@ -35,7 +36,7 @@ No complex code. No scary reviews. Just you, learning how open source works — 
 4. Describe what you want to do or report
 5. Click **"Submit new issue"** 🎉
 
-> 💡 **Tip:** Not sure what to write? Try introducing yourself: *"Hi! I'm [name] and I want to make my first contribution."*
+> 💡 **Tip:** Not sure what to write? Try introducing yourself in `docs/others/[your-github-username].md`: *"Hi! I'm [name] and I want to make my first contribution."*. And also add your **github-user-name** in `contributors.md`.
 
 ---
 
@@ -46,9 +47,10 @@ Click the **Fork** button at the top-right of this page. This creates your own c
 
 ### Step 2 — Clone Your Fork
 ```bash
-git clone https://github.com/YOUR-USERNAME/REPO-NAME.git
+git clone https://github.com/[YOUR-USERNAME]/[REPO-NAME].git
 cd REPO-NAME
 ```
+> Replace with your actual for repo
 
 ### Step 3 — Create a New Branch
 ```bash
@@ -96,15 +98,6 @@ git push origin add-your-name
 - **Be descriptive.** Write clear titles and descriptions for issues and PRs.
 - **One change per PR.** Keep pull requests small and focused.
 - **Ask questions freely.** There are no silly questions here!
-
----
-
-## 🌟 Contributors
-
-Thank you to everyone who has contributed to this project! 🙏
-
-<!-- Contributors will be listed here -->
-*Be the first to add your name!*
 
 ---
 

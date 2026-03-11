@@ -1,0 +1,5 @@
+[tool.ruff]
+# Enable specific rules (e.g., Pyflakes 'F', Isort 'I')
+select = ["E", "F", "I"]
+# Ignore line length errors
+ignore = ["E501"]
