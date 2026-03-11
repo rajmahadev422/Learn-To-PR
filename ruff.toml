@@ -1,5 +1,7 @@
-[tool.ruff]
-# Enable specific rules (e.g., Pyflakes 'F', Isort 'I')
+# No [tool.ruff] header needed here!
 select = ["E", "F", "I"]
-# Ignore line length errors
 ignore = ["E501"]
+
+[lint]
+# If you have lint-specific settings, use [lint] instead of [tool.ruff.lint]
+ignore = ["D100"]
