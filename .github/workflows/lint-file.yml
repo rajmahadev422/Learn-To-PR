@@ -10,38 +10,50 @@ on:
 jobs:
   changes:
     runs-on: ubuntu-latest
+
     outputs:
-      markdown: ${{ steps.filter.outputs.markdown }}
+      python: ${{ steps.filter.outputs.python }}
       json: ${{ steps.filter.outputs.json }}
 
     steps:
-      - uses: actions/checkout@v4
-      - uses: dorny/paths-filter@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Path filter
+        uses: dorny/paths-filter@v3
         id: filter
         with:
           filters: |
-            markdown:
-              - '**/*.md'
+            python:
+              - '**/*.py'
             json:
               - '**/*.json'
 
-  markdown-lint:
+  python-lint:
     needs: changes
-    if: ${{ needs.changes.outputs.markdown == 'true' }}
+    if: ${{ needs.changes.outputs.python == 'true' }}
+
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - name: Run markdownlint-cli2
-        uses: DavidAnson/markdownlint-cli2-action@v16
-        with:
-          globs: '**/*.md'
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Ruff
+        run: pip install ruff
+
+      - name: Run ruff
+        run: ruff check --output-format=github .
 
   json-lint:
     needs: changes
     if: ${{ needs.changes.outputs.json == 'true' }}
+
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Lint JSON files
         uses: Rosalun/action-jsonlint@v1
         with:
