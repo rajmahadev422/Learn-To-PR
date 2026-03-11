@@ -6,6 +6,6 @@ npm-debug.log*
 
 # environment files
 .env
-
+merge.bat
 # OS files
 .DS_Store
