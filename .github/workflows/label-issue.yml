@@ -2,7 +2,11 @@ name: Auto label Issues
 
 on:
   issues:
-    types: [opened, reopened, edited, unlabeled]
+    types:
+      - opened
+      - reopened
+      - edited
+      - synchronize
 
 permissions:
   issues: write

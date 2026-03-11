@@ -1,4 +1,4 @@
-name: PR Labeler
+name: Auto PR Label
 
 on:
   pull_request_target:
@@ -15,15 +15,91 @@ jobs:
     permissions:
       pull-requests: write
       issues: write
+      contents: read
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Dependency
+        run: npm install @google/genai
+
+      - name: Run AI PR Labeler
+        id: ai
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          LABELS=$(node <<'EOF'
+          const { GoogleGenAI } = require("@google/genai");
+
+          const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+
+          async function main() {
+
+            const prompt = `
+            Based on the below PR title and body, give labels.
+
+            PR Title: ${process.env.PR_TITLE}
+            PR Body: ${process.env.PR_BODY || ""}
+            `;
+
+            const response = await ai.models.generateContent({
+              model: "gemini-2.5-flash",
+              contents: prompt,
+              config: {
+                systemInstruction: `
+                You are a helpful assistant for predicting labels for pull requests.
+
+                Available Labels:
+                [bug, enhancement, documentation, question, help wanted, good first issue, invalid, wontfix]
+
+                Choose the 1-2 most relevant labels.
+                Return ONLY javascript array.
+                Example: ["bug","help wanted"]
+                `
+              }
+            });
+
+            try {
+              const labels = JSON.parse(response.text);
+              if (!Array.isArray(labels)) return "[]";
+              return JSON.stringify(labels);
+            } catch {
+              return "[]";
+            }
+          }
+
+          main().then(result => console.log(result));
+          EOF
+          )
+          echo "labels=$LABELS" >> $GITHUB_OUTPUT
+        
       - name: Add PR Label
         uses: actions/github-script@v7
         with:
           script: |
+            const raw = '${{ steps.ai.outputs.labels }}';
+
+            let labels = [];
+
+            try {
+              labels = JSON.parse(raw);
+            } catch {
+              console.log("Invalid AI output:", raw);
+            }
+
+            if (labels.length === 0) return;
+
             await github.rest.issues.addLabels({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              issue_number: context.payload.pull_request.number,
-              labels: ["pr-submitted"]
+              issue_number: context.issue.number,
+              labels
             });
