@@ -1,30 +1,42 @@
-// const yearEle = document.getElementById("year");
-// const now = new Date();
-// yearEle.innerText = now.getFullYear();
+document.addEventListener('DOMContentLoaded', () => {
+  // Fetch contributors data from contributors.json
+  fetch('contributors.json')
+    .then(response => response.json())
+    .then(contributors => {
+      // Get the contributors container element
+      const contributorsContainer = document.getElementById('contributors-container');
 
+      // Check if the container exists
+      if (contributorsContainer) {
+        // Iterate through the contributors and create elements to display them
+        contributors.forEach(contributor => {
+          // Create a div element for each contributor
+          const contributorDiv = document.createElement('div');
+          contributorDiv.classList.add('contributor'); // Add a class for styling
 
-const appEle = document.getElementById("app");
-const headerEle = document.getElementById("header-container");
-loadPage("layout/Header", headerEle);
+          // Create an image element for the contributor's avatar
+          const avatarImg = document.createElement('img');
+          avatarImg.src = contributor.avatar_url;
+          avatarImg.alt = contributor.login;
+          contributorDiv.appendChild(avatarImg);
 
-const footerEle = document.getElementById("footer-container");
-loadPage("layout/Footer", footerEle);
+          // Create a heading element for the contributor's username
+          const usernameHeading = document.createElement('h3');
+          usernameHeading.textContent = contributor.login;
+          contributorDiv.appendChild(usernameHeading);
 
-async function loadPage(page, element) {
-  const res = await fetch(`src/pages/${page}.html`);
-  const html = await res.text();
-  element.innerHTML = html;
-}
+          // Create a link to the contributor's GitHub profile
+          const profileLink = document.createElement('a');
+          profileLink.href = contributor.html_url;
+          profileLink.textContent = 'View Profile';
+          contributorDiv.appendChild(profileLink);
 
-async function router() {
-  const route = location.hash.slice(1) || "home";
-  if (route === "home") {
-    loadPage("Home", appEle);
-  } else if (route === "leaderboard") {
-    loadPage("Leaderboard", appEle);
-  }
-}
-
-window.addEventListener("hashchange", router);
-window.addEventListener("load", router);
-
+          // Append the contributor div to the container
+          contributorsContainer.appendChild(contributorDiv);
+        });
+      } else {
+        console.error('Contributors container not found.');
+      }
+    })
+    .catch(error => console.error('Error fetching contributors:', error));
+});
