@@ -1,30 +1,32 @@
-// const yearEle = document.getElementById("year");
-// const now = new Date();
-// yearEle.innerText = now.getFullYear();
+import { router } from "./router.js";
 
+const contributorsDataUrl = '/contributors.json';
 
-const appEle = document.getElementById("app");
-const headerEle = document.getElementById("header-container");
-loadPage("layout/Header", headerEle);
-
-const footerEle = document.getElementById("footer-container");
-loadPage("layout/Footer", footerEle);
-
-async function loadPage(page, element) {
-  const res = await fetch(`src/pages/${page}.html`);
-  const html = await res.text();
-  element.innerHTML = html;
-}
-
-async function router() {
-  const route = location.hash.slice(1) || "home";
-  if (route === "home") {
-    loadPage("Home", appEle);
-  } else if (route === "leaderboard") {
-    loadPage("Leaderboard", appEle);
+async function fetchContributors() {
+  try {
+    const response = await fetch(contributorsDataUrl);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const contributors = await response.json();
+    return contributors;
+  } catch (error) {
+    console.error('Failed to fetch contributors:', error);
+    return [];
   }
 }
 
-window.addEventListener("hashchange", router);
-window.addEventListener("load", router);
+async function displayContributors() {
+  const contributors = await fetchContributors();
+  const leaderboardPage = document.querySelector('leaderboard-page');
+  if (leaderboardPage) {
+    leaderboardPage.contributors = contributors;
+  } else {
+    console.warn('Leaderboard page not found.');
+  }
+}
 
+window.addEventListener("DOMContentLoaded", () => {
+  router();
+  displayContributors();
+});
