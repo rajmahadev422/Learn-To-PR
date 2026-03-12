@@ -1,30 +1,46 @@
-// const yearEle = document.getElementById("year");
-// const now = new Date();
-// yearEle.innerText = now.getFullYear();
+import { router } from "./router.js";
 
+// Function to fetch contributors data and update the contributors section
+async function updateContributors() {
+  try {
+    const response = await fetch('contributors.json');
+    const contributors = await response.json();
 
-const appEle = document.getElementById("app");
-const headerEle = document.getElementById("header-container");
-loadPage("layout/Header", headerEle);
+    const contributorsContainer = document.getElementById('contributors-list');
+    if (contributorsContainer) {
+      contributorsContainer.innerHTML = ''; // Clear existing content
 
-const footerEle = document.getElementById("footer-container");
-loadPage("layout/Footer", footerEle);
+      contributors.forEach(contributor => {
+        const contributorElement = document.createElement('div');
+        contributorElement.classList.add('contributor'); // Add a class for styling
 
-async function loadPage(page, element) {
-  const res = await fetch(`src/pages/${page}.html`);
-  const html = await res.text();
-  element.innerHTML = html;
-}
+        const avatar = document.createElement('img');
+        avatar.src = contributor.avatar_url;
+        avatar.alt = contributor.login;
+        avatar.classList.add('contributor-avatar'); // Add a class for styling
 
-async function router() {
-  const route = location.hash.slice(1) || "home";
-  if (route === "home") {
-    loadPage("Home", appEle);
-  } else if (route === "leaderboard") {
-    loadPage("Leaderboard", appEle);
+        const username = document.createElement('a');
+        username.href = contributor.html_url;
+        username.textContent = contributor.login;
+        username.classList.add('contributor-username'); // Add a class for styling
+
+        contributorElement.appendChild(avatar);
+        contributorElement.appendChild(username);
+        contributorsContainer.appendChild(contributorElement);
+      });
+    }
+  } catch (error) {
+    console.error('Error fetching contributors:', error);
+    // Display an error message to the user, or retry the fetch.
+    const contributorsContainer = document.getElementById('contributors-list');
+    if (contributorsContainer) {
+      contributorsContainer.innerHTML = '<p>Failed to load contributors. Please try again later.</p>';
+    }
   }
 }
 
-window.addEventListener("hashchange", router);
-window.addEventListener("load", router);
 
+document.addEventListener("DOMContentLoaded", () => {
+  router();
+  updateContributors(); // Call the function to update the contributors section
+});
