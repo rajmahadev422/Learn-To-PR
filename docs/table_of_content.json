@@ -1,5 +1,5 @@
 {
-  "tutorial": [
+  "tutorials": [
     {
       "title": "Opencv Windows Installation",
       "href": "opencv_windows_install.md"

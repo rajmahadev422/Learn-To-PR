@@ -1,6 +1,8 @@
 # Node dependencies
 node_modules/
 
+# Python dependencies
+venv
 # logs
 npm-debug.log*
 
@@ -9,3 +11,21 @@ npm-debug.log*
 merge.bat
 # OS files
 .DS_Store
+
+```gitignore
+# Python
+__pycache__/
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv
+.virtualenv
+virtualenv/
+
+# IDE
+.vscode/
+
+# Environment variables
+.env
