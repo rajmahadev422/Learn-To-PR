@@ -11,5 +11,10 @@
       "href": "mahadev.md"
     }
   ],
-  "samples": []
+  "samples": [
+    {
+      "title": "FastAPI Server",
+      "href": "fastapi_server/README.md"
+    }
+  ]
 }

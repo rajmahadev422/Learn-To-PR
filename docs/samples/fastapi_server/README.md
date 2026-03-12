@@ -42,3 +42,67 @@ cd fastapi-server
 ```bash
 pip install -r requirements.txt
 ```
+
+## Code in main.py
+
+- Import library
+
+  ```py
+  from fastapi import FastAPI, HTTPException, Depends, Query
+  from fastapi.responses import JSONResponse
+  from pydantic import BaseModel
+  from typing import Optional, List
+  from datetime import datetime
+  import uvicorn
+  ```
+
+- Create FastAPI instance
+
+  ```py
+  app = FastAPI(
+      title="My FastAPI Server",
+      description="A simple FastAPI server example",
+      version="1.0.0"
+  )
+  ```
+
+- Pydantic models for request/response
+
+  ```py
+  class Item(BaseModel):
+      name: str
+      description: Optional[str] = None
+      price: float
+      tax: Optional[float] = None
+      is_offer: Optional[bool] = False
+
+  class ItemResponse(Item):
+      id: int
+      created_at: datetime
+      updated_at: datetime
+
+  class User(BaseModel):
+      username: str
+      email: str
+      full_name: Optional[str] = None
+      disabled: Optional[bool] = None
+  ```
+
+- In-memory database (for demonstration)
+
+  ```py
+  items_db = {}
+  users_db = {}
+  ```
+
+- Root endpoint
+
+  ```py
+  @app.get("/")
+  async def root():
+      return {
+          "message": "Welcome to FastAPI Server",
+          "docs": "/docs",
+          "redoc": "/redoc"
+      }
+  ```
