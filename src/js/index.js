@@ -1,30 +1,74 @@
-// const yearEle = document.getElementById("year");
-// const now = new Date();
-// yearEle.innerText = now.getFullYear();
+import router from './router.js';
 
+// Import pages
+import Home from '../pages/Home.html';
+import Leaderboard from '../pages/Leaderboard.html';
+import NotFound from '../pages/404.html';
 
-const appEle = document.getElementById("app");
-const headerEle = document.getElementById("header-container");
-loadPage("layout/Header", headerEle);
+// Import Layouts
+import Header from '../pages/layout/Header.html';
+import Footer from '../pages/layout/Footer.html';
 
-const footerEle = document.getElementById("footer-container");
-loadPage("layout/Footer", footerEle);
+// Define routes
+const routes = {
+  '/': Home,
+  '/leaderboard': Leaderboard,
+};
 
-async function loadPage(page, element) {
-  const res = await fetch(`src/pages/${page}.html`);
-  const html = await res.text();
-  element.innerHTML = html;
-}
+// Function to load layout components
+const loadLayout = () => {
+  document.querySelector('header').innerHTML = Header;
+  document.querySelector('footer').innerHTML = Footer;
+};
 
-async function router() {
-  const route = location.hash.slice(1) || "home";
-  if (route === "home") {
-    loadPage("Home", appEle);
-  } else if (route === "leaderboard") {
-    loadPage("Leaderboard", appEle);
+// Initial load
+document.addEventListener('DOMContentLoaded', () => {
+  loadLayout();
+  router(routes, NotFound);
+});
+
+// Listen for hash changes
+window.addEventListener('hashchange', () => {
+  router(routes, NotFound);
+});
+
+// Function to fetch contributors from contributors.json and display them
+async function displayContributors() {
+  try {
+    const response = await fetch('contributors.json');
+    const contributors = await response.json();
+
+    const contributorsContainer = document.createElement('div');
+    contributorsContainer.id = 'contributors-container';
+
+    contributors.forEach(contributor => {
+      const contributorElement = document.createElement('div');
+      contributorElement.classList.add('contributor');
+
+      const avatar = document.createElement('img');
+      avatar.src = contributor.avatar_url;
+      avatar.alt = contributor.login;
+      avatar.width = 50;
+      avatar.height = 50;
+
+      const username = document.createElement('a');
+      username.href = contributor.html_url;
+      username.textContent = contributor.login;
+
+      contributorElement.appendChild(avatar);
+      contributorElement.appendChild(username);
+      contributorsContainer.appendChild(contributorElement);
+    });
+
+    document.querySelector('main').appendChild(contributorsContainer);
+  } catch (error) {
+    console.error('Error fetching contributors:', error);
+    document.querySelector('main').innerHTML = '<p>Failed to load contributors.</p>';
   }
 }
 
-window.addEventListener("hashchange", router);
-window.addEventListener("load", router);
+// Call the function to display contributors (you might want to call it based on the route)
+if (window.location.hash === '#/leaderboard') { // adjust condition according to your route
+    displayContributors();
+}
 
