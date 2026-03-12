@@ -1,30 +1,11 @@
-// const yearEle = document.getElementById("year");
-// const now = new Date();
-// yearEle.innerText = now.getFullYear();
+import Header from "./pages/layout/Header.js";
+import Footer from "./pages/layout/Footer.js";
+import router from "./router.js";
 
-
-const appEle = document.getElementById("app");
-const headerEle = document.getElementById("header-container");
-loadPage("layout/Header", headerEle);
-
-const footerEle = document.getElementById("footer-container");
-loadPage("layout/Footer", footerEle);
-
-async function loadPage(page, element) {
-  const res = await fetch(`src/pages/${page}.html`);
-  const html = await res.text();
-  element.innerHTML = html;
+function render() {
+  document.querySelector("#header").innerHTML = Header();
+  document.querySelector("#footer").innerHTML = Footer();
+  router(document.querySelector("#root"));
 }
 
-async function router() {
-  const route = location.hash.slice(1) || "home";
-  if (route === "home") {
-    loadPage("Home", appEle);
-  } else if (route === "leaderboard") {
-    loadPage("Leaderboard", appEle);
-  }
-}
-
-window.addEventListener("hashchange", router);
-window.addEventListener("load", router);
-
+render();
