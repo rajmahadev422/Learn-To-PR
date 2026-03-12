@@ -1,30 +1,51 @@
-// const yearEle = document.getElementById("year");
-// const now = new Date();
-// yearEle.innerText = now.getFullYear();
-
-
-const appEle = document.getElementById("app");
-const headerEle = document.getElementById("header-container");
-loadPage("layout/Header", headerEle);
-
-const footerEle = document.getElementById("footer-container");
-loadPage("layout/Footer", footerEle);
-
-async function loadPage(page, element) {
-  const res = await fetch(`src/pages/${page}.html`);
-  const html = await res.text();
-  element.innerHTML = html;
-}
-
-async function router() {
-  const route = location.hash.slice(1) || "home";
-  if (route === "home") {
-    loadPage("Home", appEle);
-  } else if (route === "leaderboard") {
-    loadPage("Leaderboard", appEle);
+document.addEventListener('DOMContentLoaded', () => {
+  // Function to fetch contributors data from contributors.json
+  async function fetchContributors() {
+    try {
+      const response = await fetch('contributors.json');
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const contributors = await response.json();
+      return contributors;
+    } catch (error) {
+      console.error('Could not fetch contributors:', error);
+      return []; // Return an empty array in case of an error
+    }
   }
-}
 
-window.addEventListener("hashchange", router);
-window.addEventListener("load", router);
+  // Function to dynamically create contributor elements
+  async function renderContributors() {
+    const contributors = await fetchContributors();
+    const contributorsContainer = document.getElementById('contributors-container');
 
+    if (!contributorsContainer) {
+      console.error('Contributors container not found!');
+      return;
+    }
+
+    contributorsContainer.innerHTML = ''; // Clear existing content
+
+    contributors.forEach(contributor => {
+      const contributorElement = document.createElement('div');
+      contributorElement.classList.add('contributor'); // Add a class for styling
+
+      const avatar = document.createElement('img');
+      avatar.src = contributor.avatar_url;
+      avatar.alt = contributor.login;
+      avatar.classList.add('contributor-avatar');
+
+      const username = document.createElement('a');
+      username.href = contributor.html_url;
+      username.textContent = contributor.login;
+      username.classList.add('contributor-username');
+
+      contributorElement.appendChild(avatar);
+      contributorElement.appendChild(username);
+      contributorsContainer.appendChild(contributorElement);
+    });
+  }
+
+  // Call renderContributors to populate the contributors section
+  renderContributors();
+});
