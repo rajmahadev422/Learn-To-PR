@@ -2,21 +2,40 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <base href="./">
-  <title>Learn To PR</title>
-  
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  <link rel="stylesheet" href="src/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn To PR</title>
+    <link rel="stylesheet" href="./src/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body class="bg-slate-50 font-sans antialiased text-slate-700">
-  
-  <div id="header-container"></div>
-  <main id="app" class="overflow-hidden"></main>
-  <div id="footer-container"></div>
-  
-  <script src="src/js/index.js"></script>
+<body>
+    <div id="root"></div>
+    <script type="module" src="./src/js/index.js"></script>
+
+    <script>
+        fetch('contributors.json')
+            .then(response => response.json())
+            .then(contributors => {
+                const contributorsContainer = document.createElement('div');
+                contributorsContainer.id = 'contributors';
+                contributorsContainer.innerHTML = '<h2>Contributors</h2>';
+
+                const contributorsList = document.createElement('ul');
+
+                contributors.forEach(contributor => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = contributor.name + ' (' + contributor.contributions + ')'; // Adjust as per your JSON structure
+                    contributorsList.appendChild(listItem);
+                });
+
+                contributorsContainer.appendChild(contributorsList);
+                document.body.appendChild(contributorsContainer);
+            })
+            .catch(error => console.error('Error fetching contributors:', error));
+    </script>
 </body>
+
 </html>
