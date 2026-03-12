@@ -1,30 +1,63 @@
-// const yearEle = document.getElementById("year");
-// const now = new Date();
-// yearEle.innerText = now.getFullYear();
+import { routes } from './router.js';
 
+document.addEventListener('DOMContentLoaded', () => {
+  const app = document.getElementById('app');
+  if (app) {
+    // Initial routing
+    routes();
 
-const appEle = document.getElementById("app");
-const headerEle = document.getElementById("header-container");
-loadPage("layout/Header", headerEle);
+    // Listen for navigation events (e.g., from navigation links)
+    window.addEventListener('popstate', routes);
+  } else {
+    console.error('App element not found!');
+  }
+  fetchContributors();
+});
 
-const footerEle = document.getElementById("footer-container");
-loadPage("layout/Footer", footerEle);
-
-async function loadPage(page, element) {
-  const res = await fetch(`src/pages/${page}.html`);
-  const html = await res.text();
-  element.innerHTML = html;
-}
-
-async function router() {
-  const route = location.hash.slice(1) || "home";
-  if (route === "home") {
-    loadPage("Home", appEle);
-  } else if (route === "leaderboard") {
-    loadPage("Leaderboard", appEle);
+async function fetchContributors() {
+  try {
+    const response = await fetch('contributors.json');
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const contributors = await response.json();
+    displayContributors(contributors);
+  } catch (error) {
+    console.error('Could not fetch contributors:', error);
+    // Display a fallback message in the UI, if appropriate
+    const contributorsSection = document.getElementById('contributors');
+    if (contributorsSection) {
+        contributorsSection.innerHTML = '<p>Failed to load contributors.</p>';
+    }
   }
 }
 
-window.addEventListener("hashchange", router);
-window.addEventListener("load", router);
+function displayContributors(contributors) {
+  const contributorsSection = document.getElementById('contributors');
+  if (!contributorsSection) {
+    console.error('Contributors section not found!');
+    return;
+  }
 
+  contributorsSection.innerHTML = ''; // Clear any existing content
+
+  contributors.forEach(contributor => {
+    const contributorElement = document.createElement('div');
+    contributorElement.classList.add('contributor'); // Add a class for styling
+
+    const avatar = document.createElement('img');
+    avatar.src = contributor.avatar_url;
+    avatar.alt = contributor.login;
+    avatar.width = 50; // Set a default width
+    avatar.height = 50; // Set a default height
+    contributorElement.appendChild(avatar);
+
+    const username = document.createElement('a');
+    username.href = contributor.html_url;
+    username.textContent = contributor.login;
+    username.target = '_blank'; // Open link in a new tab
+    contributorElement.appendChild(username);
+
+    contributorsSection.appendChild(contributorElement);
+  });
+}
