@@ -1,30 +1,36 @@
-// const yearEle = document.getElementById("year");
-// const now = new Date();
-// yearEle.innerText = now.getFullYear();
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    const response = await fetch('contributors.json');
+    const contributors = await response.json();
 
+    const contributorsContainer = document.getElementById('contributors');
 
-const appEle = document.getElementById("app");
-const headerEle = document.getElementById("header-container");
-loadPage("layout/Header", headerEle);
+    if (contributorsContainer) {
+      contributors.forEach(contributor => {
+        const contributorElement = document.createElement('div');
+        contributorElement.classList.add('contributor');
 
-const footerEle = document.getElementById("footer-container");
-loadPage("layout/Footer", footerEle);
+        const avatar = document.createElement('img');
+        avatar.src = contributor.avatar_url;
+        avatar.alt = contributor.login;
+        avatar.classList.add('contributor-avatar');
 
-async function loadPage(page, element) {
-  const res = await fetch(`src/pages/${page}.html`);
-  const html = await res.text();
-  element.innerHTML = html;
-}
+        const username = document.createElement('a');
+        username.href = contributor.html_url;
+        username.textContent = contributor.login;
+        username.classList.add('contributor-username');
 
-async function router() {
-  const route = location.hash.slice(1) || "home";
-  if (route === "home") {
-    loadPage("Home", appEle);
-  } else if (route === "leaderboard") {
-    loadPage("Leaderboard", appEle);
+        contributorElement.appendChild(avatar);
+        contributorElement.appendChild(username);
+        contributorsContainer.appendChild(contributorElement);
+      });
+    }
+  } catch (error) {
+    console.error('Error fetching contributors:', error);
+    // Handle the error appropriately, e.g., display an error message on the page.
+    const contributorsContainer = document.getElementById('contributors');
+    if (contributorsContainer) {
+        contributorsContainer.textContent = 'Failed to load contributors.';
+    }
   }
-}
-
-window.addEventListener("hashchange", router);
-window.addEventListener("load", router);
-
+});
