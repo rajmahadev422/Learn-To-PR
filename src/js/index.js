@@ -199,6 +199,13 @@ function filterDocsNav(query) {
   empty.classList.toggle('visible', !anyVisible);
 }
 
+// Exposing function to global 
+
+window.toggleDocsGroup = toggleDocsGroup;
+window.showDocsWelcome = showDocsWelcome;
+window.filterDocsNav = filterDocsNav;
+window.handleDocClick = handleDocClick;
+
 // ─── OTHER PAGES ─────────────────────────────────────────────────────────────
 
 async function loadPage(page) {

@@ -26,8 +26,6 @@ html::-webkit-scrollbar {
   }
 }
 
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&display=swap');
-
 /* ── Layout ── */
 .docs-layout {
   display: flex;
@@ -425,23 +423,22 @@ html::-webkit-scrollbar {
 /* ── MD content ── */
 
 .md-body {
-  font-family: 'Source Serif 4', serif;
+  font-family: Arial, Helvetica, sans-serif;
   line-height: 1.85;
 }
 
 .md-body h1 {
-  font-family: 'Playfair Display', serif;
   font-size: 2rem;
-  font-weight: 700;
+  font-weight: bold;
   color: #1a1a1a;
-  letter-spacing: -0.02em;
+  font-family: monospace;
   border-bottom: 1px solid #ebebeb;
   padding-bottom: 0.5rem;
   margin: 0 0 1rem;
 }
 
 .md-body h2 {
-  font-family: 'Playfair Display', serif;
+  font-family: serif;
   font-size: 1.45rem;
   font-style: italic;
   font-weight: 500;
@@ -490,8 +487,8 @@ html::-webkit-scrollbar {
 }
 
 .md-body code {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.8em;
+  font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", Consolas, monospace;
+  font-size: 14px;
   background: #f5f2ee;
   color: #a67c4a;
   padding: 0.15em 0.4em;
@@ -500,6 +497,8 @@ html::-webkit-scrollbar {
 }
 
 .md-body pre {
+  font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", Consolas, monospace;
+  font-size: 14px;
   background: #faf8f5;
   border: 1px solid #ebe7e0;
   border-left: 3px solid #a67c4a;
