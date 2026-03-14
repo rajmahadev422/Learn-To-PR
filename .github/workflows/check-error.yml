@@ -7,12 +7,14 @@ on:
       - '**.html'
       - '**.js'
       - '**.css'
+      - '**.json'
 
   pull_request:
     paths:
       - '**.html'
       - '**.js'
       - '**.css'
+      - '**.json'
 
 permissions:
   pages: write
