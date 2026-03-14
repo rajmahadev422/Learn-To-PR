@@ -15,6 +15,10 @@
     {
       "title": "FastAPI Server",
       "href": "fastapi_server/README.md"
+    },
+    {
+      "title": "Sympy",
+      "href": "mathematics/README.md"
     }
   ]
 }
