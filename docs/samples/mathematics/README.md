@@ -150,9 +150,9 @@ pi.evalf(50)  # Gives pi to 50 decimal places
 
 To dive deeper into symbolic computation, explore these official resources and community examples:
 
-* [Basic Mathematics](docs/samples/Basic_math.ipynb)
+* [Basic Mathematics](https://github.com/rajmahadev422/Learn-To-PR/blob/main/docs/samples/mathematics/Basic_math.ipynb)
 
-* [Advanced Mathematics](docs/samples/Adv_math.ipynb)
+* [Advanced Mathematics](https://github.com/rajmahadev422/Learn-To-PR/blob/main/docs/samples/mathematics/Adv_math.ipynb)
 
 ---
 
