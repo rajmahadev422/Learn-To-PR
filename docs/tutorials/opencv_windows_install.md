@@ -46,7 +46,7 @@ Restart the terminal if prompted.
 
 ---
 
-## Step 2: Install Required Packages 
+## Step 2: Install Required Packages
 
 Install the required compiler and build tools.
 
@@ -65,9 +65,9 @@ mingw32-make --version
 ```
 
 > **Note:** Add the following directory to your `Windows PATH`:
-> ```
-> C:\msys64\ucrt64\bin
-> ```
+    ```text
+    C:\msys64\ucrt64\bin
+    ```
 
 ---
 
@@ -134,7 +134,7 @@ mingw32-make -j4
 
 - Add the following directory to your **Windows PATH**:
 
-  ```
+  ```text
   C:\path\to\opencv\build\install\x64\mingw\bin
   ```
 
@@ -150,8 +150,7 @@ mingw32-make -j4
     #include <opencv2/opencv.hpp>
     #include <iostream>
 
-    int main()
-    {
+    int main() {
       std::cout << "OpenCV Version: " << CV_VERSION << std::endl;
 
       cv::Mat img = cv::Mat::zeros(400, 400, CV_8UC3);
@@ -165,7 +164,7 @@ mingw32-make -j4
 
 3. Create **CMakeLists.txt**:
 
-    ```cmake
+    ```t
     cmake_minimum_required(VERSION 3.10)
 
     project(OpenCVApp)
@@ -198,7 +197,7 @@ mingw32-make -j4
 
 ---
 
-## Using OpenCV in Visual Studio Code 
+## Using OpenCV in Visual Studio Code
 
 Install the following extensions in **VS Code**:
 
@@ -221,7 +220,7 @@ Run the executable from the integrated terminal.
 
 ---
 
-## Troubleshooting 
+## Troubleshooting
 
 ### CMake cannot find OpenCV
 
@@ -229,7 +228,7 @@ Ensure that `OpenCV_DIR` is set correctly:
 
 > **Note:** This path is present inside the build folder
 
-```cmake
+```t
 set(OpenCV_DIR "C:/path/to/opencv/build/install/lib/cmake/opencv4")
 ```
 
