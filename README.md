@@ -58,9 +58,9 @@ git checkout -b add-your-name
 ```
 
 ### Step 4 — Make Your Change
-Open the `CONTRIBUTORS.md` file and add your name:
-```
-- Your Name (@yourgithubusername)
+Open the `contributors.json` file and add your name:
+```json
+[...,"Your-Name"]
 ```
 
 ### Step 5 — Commit & Push
