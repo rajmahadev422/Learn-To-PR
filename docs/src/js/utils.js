@@ -1,6 +1,6 @@
 // utils.js - Utility functions for the documentation viewer
 
-export function getCurrentPage() {
+function getCurrentPage() {
   const hash = window.location.hash;
 
   // default page
@@ -11,26 +11,27 @@ export function getCurrentPage() {
 }
 
 // Simple mapping of file extensions to Prism languages
-export function mapLang(lang) {
+function mapLang(lang) {
   const map = {
     py: "python",
     js: "javascript",
     cpp: "cpp",
     java: "java",
     sh: "bash",
+    md: "markdown",
   };
-  if (!map[lang]) return lang;
-  return map[lang];
+  
+  return (!map[lang]) ? lang : map[lang];
 }
 
 // Tokenize markdown into blocks and markdown segments
 
-
-export async function loadMarkdown(path) {
+async function loadMarkdown(path) {
   try {
-    const res = await fetch(`docs/${path}`);
+    const res = await fetch(`${gitPath}doc/${path}`);
     if (!res.ok) {
-      const res = await fetch('src/404.html');
+      
+      const res = await fetch("src/pages/404.html");
       return await res.text();
     }
     return await res.text();
@@ -40,7 +41,7 @@ export async function loadMarkdown(path) {
 }
 
 // ===== BREADCRUMB =====
-export function updateBreadcrumb(page) {
+function updateBreadcrumb(page) {
   const crumb = document.getElementById("breadcrumb");
   if (!crumb) return;
   const parts = page.replace(/\.md$/, "").split("/");
@@ -53,8 +54,3 @@ export function updateBreadcrumb(page) {
     })
     .join("");
 }
-
-// window.getCurrentPage = getCurrentPage;
-// window.loadMarkdown = loadMarkdown;
-// window.updateBreadcrumb = updateBreadcrumb;
-// window.mapLang = mapLang;

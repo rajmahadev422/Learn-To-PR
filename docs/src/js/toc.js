@@ -1,3 +1,7 @@
+// find all headers in the rendered markdown and store them in an array
+
+let headersList = [];
+
 // TOC Logic
 
 const tocContainer = document.getElementById("toc");
@@ -50,7 +54,7 @@ function autoCloseToc(time = 3000) {
 window.addEventListener("DOMContentLoaded", async () => {
   const targetNode = document.getElementById("app");
 
-  const observer = new MutationObserver(() => {
+  const observer = new MutationObserver((mutations) => {
     // Clear the list so you don't get duplicates every time the observer fires
     ul.innerHTML = "";
 
@@ -59,6 +63,14 @@ window.addEventListener("DOMContentLoaded", async () => {
     li1.textContent = "Table of Contents";
     li1.classList.add("li1");
     ul.appendChild(li1);
+
+    if (headers.length === 0) {
+      const li = document.createElement("li");
+      li.textContent = "No headers found.";
+      li.classList.add("li2");
+      ul.appendChild(li);
+    }
+
     headers.forEach((h, idx) => {
       const text = h.innerText.trim();
       if (text !== "") {
@@ -69,7 +81,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 
         const li = document.createElement("li");
         li.textContent = text;
-        li.classList.add('li2');
+        li.classList.add("li2");
 
         li.onclick = () => {
           // 2. Now this will find the H1/H2 element, not the LI

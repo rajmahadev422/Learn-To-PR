@@ -1,6 +1,4 @@
-import {mapLang} from "./utils.js";
-
-export function tokenize(md) {
+function tokenize(md) {
   const regex = /:::(\w+)([^\n]*)\n([\s\S]*?):::/g;
 
   let tokens = [];
@@ -35,7 +33,7 @@ export function tokenize(md) {
   return tokens;
 }
 
-export async function loadIncludes(md) {
+async function loadIncludes(md) {
   const regex = /:::include\{(.+?)\}/g;
 
   const matches = [...md.matchAll(regex)];
@@ -94,6 +92,3 @@ function extractLines(code, linePart) {
   // fallback
   return code;
 }
-
-// window.tokenize = tokenize;
-// window.loadIncludes = loadIncludes;

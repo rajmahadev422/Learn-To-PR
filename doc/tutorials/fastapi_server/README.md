@@ -30,22 +30,32 @@ A robust FastAPI-based REST API server with CRUD operations, request validation,
 
 ### 1. Clone the repository
 
+:::code
+
 ```bash
 git clone https://github.com/yourusername/fastapi-server.git
 cd fastapi-server
 ```
 
+:::
+
 > Create and Activate virtual environment
 
 ### 2. Install dependency
+
+:::code
 
 ```bash
 pip install -r requirements.txt
 ```
 
+:::
+
 ## Code in main.py
 
 - Import library
+
+:::code
 
   ```py
   from fastapi import FastAPI, HTTPException, Depends, Query
@@ -56,7 +66,11 @@ pip install -r requirements.txt
   import uvicorn
   ```
 
+:::
+
 - Create FastAPI instance
+
+:::code
 
   ```py
   app = FastAPI(
@@ -66,7 +80,11 @@ pip install -r requirements.txt
   )
   ```
 
+:::code
+
 - Pydantic models for request/response
+
+:::code
 
   ```py
   class Item(BaseModel):
@@ -88,14 +106,22 @@ pip install -r requirements.txt
       disabled: Optional[bool] = None
   ```
 
+:::
+
 - In-memory database (for demonstration)
+
+:::code
 
   ```py
   items_db = {}
   users_db = {}
   ```
 
+:::
+
 - Root endpoint
+
+:::code
 
   ```py
   @app.get("/")
@@ -106,3 +132,5 @@ pip install -r requirements.txt
           "redoc": "/redoc"
       }
   ```
+
+:::

@@ -3,22 +3,20 @@
     {
       "name": "Opencv Windows Installation",
       "url": "tutorials/opencv_windows_install.md"
+    },
+    {
+      "name": "FastAPI Server",
+      "url": "tutorials/fastapi_server/README.md"
+    },
+    {
+      "name": "Sympy Use Case",
+      "url": "tutorials/mathematics/README.md"
     }
   ],
   "others": [
     {
       "name": "Mahadev422",
       "url": "others/mahadev.md"
-    }
-  ],
-  "samples": [
-    {
-      "name": "FastAPI Server",
-      "url": "samples/fastapi_server/README.md"
-    },
-    {
-      "name": "Sympy Use Case",
-      "url": "samples/mathematics/README.md"
     }
   ]
 }

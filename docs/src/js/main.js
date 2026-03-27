@@ -25,12 +25,6 @@ menuBtn.onclick = () => {
 };
 
 // ===== MAIN LOGIC =====
-import { renderSidebar } from "./sidebar";
-import { getCurrentPage, loadMarkdown, updateBreadcrumb } from "./utils";
-import { tokenize, loadIncludes } from "./tokenizer";
-import { parse } from "./parser";
-import { render } from "./createTabs";
-
 const overlay = document.getElementById("overlay");
 
 async function init() {
@@ -77,4 +71,15 @@ function wrapTables() {
     table.parentNode.insertBefore(wrapper, table);
     wrapper.appendChild(table);
   });
-};
+}
+
+
+// menuBtn.onclick = () => {
+//   sidebar.classList.toggle("show");
+//   overlay.classList.toggle("show");
+// };
+
+// overlay.onclick = () => {
+//   sidebar.classList.remove("show");
+//   overlay.classList.remove("show");
+// };

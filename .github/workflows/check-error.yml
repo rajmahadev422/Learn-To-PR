@@ -1,57 +1,57 @@
-name: Lint and Deploy
+# name: Lint and Deploy
 
-on:
-  push:
-    branches: [main]
-    paths:
-      - '**.html'
-      - '**.js'
-      - '**.css'
-      - '**.json'
-      - '**.md'
+# on:
+#   push:
+#     branches: [main]
+#     paths:
+#       - '**.html'
+#       - '**.js'
+#       - '**.css'
+#       - '**.json'
+#       - '**.md'
 
-  pull_request:
-    paths:
-      - '**.html'
-      - '**.js'
-      - '**.css'
-      - '**.json'
+#   pull_request:
+#     paths:
+#       - '**.html'
+#       - '**.js'
+#       - '**.css'
+#       - '**.json'
 
-permissions:
-  pages: write
-  id-token: write
-  contents: read
+# permissions:
+#   pages: write
+#   id-token: write
+#   contents: read
 
-jobs:
-  check-quality:
-    runs-on: ubuntu-latest
+# jobs:
+#   check-quality:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+#     steps:
+#       - name: Checkout Repository
+#         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "22"
+#       - name: Setup Node.js
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: "22"
 
-      - name: Install Modern Linting Tools
-        run: npm install eslint@latest globals @eslint/js --save-dev
+#       - name: Install Modern Linting Tools
+#         run: npm install eslint@latest globals @eslint/js --save-dev
 
-      - name: Run JS Linter
-        run: npx eslint "**/*.js"
+#       - name: Run JS Linter
+#         run: npx eslint "**/*.js"
 
-      - name: Setup Pages
-        if: github.event_name == 'push'
-        uses: actions/configure-pages@v5
+#       - name: Setup Pages
+#         if: github.event_name == 'push'
+#         uses: actions/configure-pages@v5
 
-      - name: Upload Pages Artifact
-        if: github.event_name == 'push'
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: .
+#       - name: Upload Pages Artifact
+#         if: github.event_name == 'push'
+#         uses: actions/upload-pages-artifact@v3
+#         with:
+#           path: .
 
-      - name: Deploy to GitHub Pages
-        if: github.event_name == 'push'
-        id: deployment
-        uses: actions/deploy-pages@v4
+#       - name: Deploy to GitHub Pages
+#         if: github.event_name == 'push'
+#         id: deployment
+#         uses: actions/deploy-pages@v4

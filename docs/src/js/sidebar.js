@@ -1,4 +1,4 @@
-export async function renderSidebar() {
+async function renderSidebar() {
   const sidebar = document.getElementById("sidebar");
   sidebar.innerHTML = "";
 
@@ -18,7 +18,7 @@ export async function renderSidebar() {
 
   const currentHash = window.location.hash.replace(/^#\/?/, "");
 
-  const res = await fetch("docs/table_of_content.json");
+  const res = await fetch(`${gitPath}doc/table_of_content.json`);
   const data = await res.json();
   function renderList(filter = "") {
     nav.innerHTML = "";
@@ -87,5 +87,3 @@ export async function renderSidebar() {
 
   renderList();
 }
-
-// window.renderSidebar = renderSidebar;

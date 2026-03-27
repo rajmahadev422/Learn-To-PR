@@ -1,6 +1,6 @@
 # Node dependencies
 node_modules/
-
+.vscode/
 # Python dependencies
 venv
 # logs
