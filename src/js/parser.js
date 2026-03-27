@@ -29,7 +29,7 @@ function parseCodeBlock(content) {
   };
 }
 
-function parse(tokens) {
+export function parse(tokens) {
   return tokens.map((token) => {
     if (token.type === "markdown") {
       return {
@@ -52,5 +52,3 @@ function parse(tokens) {
     }
   });
 }
-
-window.parse = parse;

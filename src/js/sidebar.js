@@ -1,4 +1,4 @@
-async function renderSidebar() {
+export async function renderSidebar() {
   const sidebar = document.getElementById("sidebar");
   sidebar.innerHTML = "";
 
@@ -88,4 +88,4 @@ async function renderSidebar() {
   renderList();
 }
 
-window.renderSidebar = renderSidebar;
+// window.renderSidebar = renderSidebar;

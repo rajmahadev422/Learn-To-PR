@@ -1,4 +1,4 @@
-function tokenize(md) {
+export function tokenize(md) {
   const regex = /:::(\w+)([^\n]*)\n([\s\S]*?):::/g;
 
   let tokens = [];
@@ -33,7 +33,7 @@ function tokenize(md) {
   return tokens;
 }
 
-async function loadIncludes(md) {
+export async function loadIncludes(md) {
   const regex = /:::include\{(.+?)\}/g;
 
   const matches = [...md.matchAll(regex)];
@@ -93,5 +93,5 @@ function extractLines(code, linePart) {
   return code;
 }
 
-window.tokenize = tokenize;
-window.loadIncludes = loadIncludes;
+// window.tokenize = tokenize;
+// window.loadIncludes = loadIncludes;

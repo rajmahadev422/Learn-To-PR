@@ -25,6 +25,12 @@ menuBtn.onclick = () => {
 };
 
 // ===== MAIN LOGIC =====
+import { renderSidebar } from "./sidebar";
+import { getCurrentPage, loadMarkdown, updateBreadcrumb } from "./utils";
+import { tokenize, loadIncludes } from "./tokenizer";
+import { parse } from "./parser";
+import { render } from "./createTabs";
+
 const overlay = document.getElementById("overlay");
 
 async function init() {

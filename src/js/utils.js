@@ -1,6 +1,6 @@
 // utils.js - Utility functions for the documentation viewer
 
-function getCurrentPage() {
+export function getCurrentPage() {
   const hash = window.location.hash;
 
   // default page
@@ -11,7 +11,7 @@ function getCurrentPage() {
 }
 
 // Simple mapping of file extensions to Prism languages
-function mapLang(lang) {
+export function mapLang(lang) {
   const map = {
     py: "python",
     js: "javascript",
@@ -26,7 +26,7 @@ function mapLang(lang) {
 // Tokenize markdown into blocks and markdown segments
 
 
-async function loadMarkdown(path) {
+export async function loadMarkdown(path) {
   try {
     const res = await fetch(`docs/${path}`);
     if (!res.ok) {
@@ -40,7 +40,7 @@ async function loadMarkdown(path) {
 }
 
 // ===== BREADCRUMB =====
-function updateBreadcrumb(page) {
+export function updateBreadcrumb(page) {
   const crumb = document.getElementById("breadcrumb");
   if (!crumb) return;
   const parts = page.replace(/\.md$/, "").split("/");
@@ -54,7 +54,7 @@ function updateBreadcrumb(page) {
     .join("");
 }
 
-window.getCurrentPage = getCurrentPage;
-window.loadMarkdown = loadMarkdown;
-window.updateBreadcrumb = updateBreadcrumb;
-window.mapLang = mapLang;
+// window.getCurrentPage = getCurrentPage;
+// window.loadMarkdown = loadMarkdown;
+// window.updateBreadcrumb = updateBreadcrumb;
+// window.mapLang = mapLang;

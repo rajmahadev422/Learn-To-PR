@@ -51,7 +51,7 @@ function createCodeTabs(blocks) {
   return container;
 }
 
-function render(ast) {
+export function render(ast) {
   const app = document.getElementById("app");
   app.innerHTML = "";
 
@@ -65,5 +65,3 @@ function render(ast) {
     }
   });
 }
-
-window.render = render;
