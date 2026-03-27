@@ -1,24 +1,24 @@
 {
   "tutorials": [
     {
-      "title": "Opencv Windows Installation",
-      "href": "opencv_windows_install.md"
+      "name": "Opencv Windows Installation",
+      "url": "tutorials/opencv_windows_install.md"
     }
   ],
   "others": [
     {
-      "title": "Mahadev422",
-      "href": "mahadev.md"
+      "name": "Mahadev422",
+      "url": "others/mahadev.md"
     }
   ],
   "samples": [
     {
-      "title": "FastAPI Server",
-      "href": "fastapi_server/README.md"
+      "name": "FastAPI Server",
+      "url": "samples/fastapi_server/README.md"
     },
     {
-      "title": "Sympy Use Case",
-      "href": "mathematics/README.md"
+      "name": "Sympy Use Case",
+      "url": "samples/mathematics/README.md"
     }
   ]
 }

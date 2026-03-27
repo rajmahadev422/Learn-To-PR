@@ -1,0 +1,27 @@
+<main>
+  <style>
+    /* Main container: full viewport, flex for potential future overlays */
+    main {
+      width: 70vw;
+      height: 70vh;
+      display: flex;
+      position: relative;
+      color: var(--text);
+    }
+
+    /* 2. Style the iframe to fill its container completely */
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+      /* Removes any inline whitespace/gap issues */
+      background: transparent;
+      /* let main gradient show if lottie bg is transparent */
+      pointer-events: auto;
+      /* ensures full interaction if needed */
+    }
+  </style>
+  <iframe src="https://lottie.host/embed/56409196-c510-446d-a732-6b144dc927d4/c2IcID3frT.lottie" allowfullscreen
+    title="Immersive Lottie Animation Player" loading="eager" aria-label="Fullscreen Lottie animation"></iframe>
+</main>
