@@ -1,3 +1,12 @@
+import { marked } from 'https://esm.sh/marked';
+import Prism from 'https://esm.sh/prismjs';
+// The autoloader needs to be imported to register itself
+import 'https://esm.sh/prismjs/plugins/autoloader/prism-autoloader';
+
+// 1. Tell the Autoloader where to find language components on the CDN
+// This is CRITICAL because you don't have a local node_modules folder
+Prism.plugins.autoloader.languages_path = 'https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/';
+
 function createCodeTabs(blocks) {
   const container = document.createElement("div");
   container.className = "code-container";
