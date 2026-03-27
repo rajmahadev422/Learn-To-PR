@@ -6,7 +6,6 @@ Here is a comprehensive guide formatted as a `.md` file that covers the essentia
 
 ---
 
-```markdown
 # Getting Started with SymPy
 
 SymPy is a Python library for symbolic mathematics. It aims to become a full-featured computer algebra system (CAS) while keeping the code as simple as possible in order to be comprehensible and easily extensible.
@@ -16,16 +15,14 @@ SymPy is a Python library for symbolic mathematics. It aims to become a full-fea
 To get started, install SymPy using pip:
 
 ```bash
-pip install sympy
-
+  pip install sympy
 ```
 
 In your Python script or Jupyter Notebook, it is common practice to import the library and initialize pretty printing:
 
 ```python
-from sympy import symbols, init_printing
-init_printing(use_unicode=True)
-
+  from sympy import symbols, init_printing
+  init_printing(use_unicode=True)
 ```
 
 ## 2. Symbols vs. Variables
@@ -33,15 +30,14 @@ init_printing(use_unicode=True)
 In SymPy, you must explicitly define symbols before using them in expressions.
 
 ```python
-from sympy import symbols
-
-# Define symbols
-x, y = symbols('x y')
-
-# Create an expression
-expr = x + 2*y
-print(expr) # Output: x + 2*y
-
+  from sympy import symbols
+  
+  # Define symbols
+  x, y = symbols('x y')
+  
+  # Create an expression
+  expr = x + 2*y
+  print(expr) # Output: x + 2*y
 ```
 
 ## 3. Core Operations
@@ -60,7 +56,6 @@ expanded_expr = expand(expr)
 
 # Factor: (x + 1)^2
 factored_expr = factor(expanded_expr)
-
 ```
 
 ### Substitution
@@ -70,7 +65,6 @@ Replace a symbol with a numerical value or another expression.
 ```python
 expr = x**2 + 1
 result = expr.subs(x, 2) # result = 5
-
 ```
 
 ## 4. Calculus
@@ -150,9 +144,9 @@ pi.evalf(50)  # Gives pi to 50 decimal places
 
 To dive deeper into symbolic computation, explore these official resources and community examples:
 
-* [Basic Mathematics](https://github.com/rajmahadev422/Learn-To-PR/blob/main/docs/samples/mathematics/Basic_math.ipynb)
+* [Basic Mathematics](https://github.com/rajmahadev422/Learn-To-PR/blob/26db91078a41bcc9ea38d95c178d46bd51092856/docs/samples/mathematics/Basic_math.ipynb)
 
-* [Advanced Mathematics](https://github.com/rajmahadev422/Learn-To-PR/blob/main/docs/samples/mathematics/Adv_math.ipynb)
+* [Advanced Mathematics](https://github.com/rajmahadev422/Learn-To-PR/blob/26db91078a41bcc9ea38d95c178d46bd51092856/docs/samples/mathematics/Adv_math.ipynb)
 
 ---
 

@@ -8,6 +8,7 @@ on:
       - '**.js'
       - '**.css'
       - '**.json'
+      - '**.md'
 
   pull_request:
     paths:

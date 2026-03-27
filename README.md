@@ -69,6 +69,7 @@ git checkout -b add-your-name
 :::
 
 ### Step 4 — Make Your Change
+<<<<<<< HEAD
 
 Open the `CONTRIBUTORS.md` file and add your name:
 
@@ -76,6 +77,11 @@ Open the `CONTRIBUTORS.md` file and add your name:
 
 ```text
 - Your Name (@yourgithubusername)
+=======
+Open the `contributors.json` file and add your name:
+```json
+[...,"Your-Name"]
+>>>>>>> 1e8650c7c8bd1d0025dfa149252ac8547b10dc0c
 ```
 
 :::
