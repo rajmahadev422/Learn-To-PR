@@ -57,3 +57,4 @@ function updateBreadcrumb(page) {
 window.getCurrentPage = getCurrentPage;
 window.loadMarkdown = loadMarkdown;
 window.updateBreadcrumb = updateBreadcrumb;
+window.mapLang = mapLang;

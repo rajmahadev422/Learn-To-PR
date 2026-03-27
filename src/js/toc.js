@@ -1,7 +1,3 @@
-// find all headers in the rendered markdown and store them in an array
-
-let headersList = [];
-
 // TOC Logic
 
 const tocContainer = document.getElementById("toc");
