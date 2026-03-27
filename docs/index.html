@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn-To-PR</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- Prism core -->
+  <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap"
+    rel="stylesheet">
+
+  <!-- Base location -->
+  <base href="./"> 
+
+  <!-- Styles sheets -->
+  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="styles/sidebar.css">
+  <link rel="stylesheet" href="styles/toc.css">
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header id="header">
+    <div class="header-left">
+      <button id="menuBtn" aria-label="Toggle sidebar">☰</button>
+      <div class="header-logo">DD</div>
+      <div class="header-brand">Dev<span>Doc</span></div>
+    </div>
+    <div class="header-center">
+      <nav class="header-breadcrumb" id="breadcrumb">
+        <span>Home</span>
+      </nav>
+    </div>
+    <div class="header-right">
+      <button id="themeToggle" aria-label="Toggle theme" title="Toggle light/dark mode">🌙</button>
+    </div>
+  </header>
+  <div id="overlay"></div>
+  <!-- MAIN LAYOUT -->
+  <div id="layout">
+    <div id="sidebar"></div>
+    <div id="app"></div>
+    <div id="toc"></div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>© <span id="year"></span> Dev-Docs. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="https://github.com/rajmahadev422/Doc-Engine.git" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- LANGUAGES -->
+<script src="https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
+  <!-- Local modules -->
+   <script>
+    // when run locally set 
+    // const gitPath = "../";
+    // when push to github set
+
+    const now = new Date();
+    document.getElementById("year").innerText = now.getFullYear();
+
+    const gitPath  = "https://raw.githubusercontent.com/rajmahadev422/Learn-To-PR/refs/heads/redesign_doc/";
+    // const gitPath  = "../";
+
+   </script>
+  <script src="js/utils.js"></script>
+  <script src="js/sidebar.js"></script>
+  <script src="js/tokenizer.js"></script>
+  <script src="js/parser.js"></script>
+  <script src="js/createTabs.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/toc.js"></script>
+</body>
+
+</html>

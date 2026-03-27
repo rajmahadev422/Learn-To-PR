@@ -1,0 +1,104 @@
+/* Container */
+#toc {
+  position: fixed;
+  top: 50px;
+  right: 20px;
+  z-index: 100;
+}
+
+/* Button */
+.toc-btn {
+  width: 50px;
+  height: 50px;
+  border: none;
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 101;
+}
+
+/* Lines */
+.toc-btn span {
+  width: 22px;
+  height: 2px;
+  background: var(--text);
+  transition: 0.3s;
+}
+
+/* Animate to X */
+.toc-btn.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.toc-btn.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.toc-btn.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Menu */
+.toc-menu {
+  position: absolute;
+  right: 0;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  overflow-y: auto;
+  width: 200px;
+  max-height: 300px;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: 0.25s;
+  z-index: 100;
+}
+
+.toc-menu::-webkit-scrollbar {
+  display: none;
+}
+
+/* Show */
+.toc-menu.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* List */
+.toc-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+}
+
+.li2 {
+  padding: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+
+.li2:hover {
+  background: var(--border);
+  color: var(--text);
+}
+
+/* Indentation for hierarchy */
+.toc-menu li:nth-child(n) {
+  padding-left: 14px;
+}
+
+.li1 {
+  font-weight: bold;
+  border-bottom: 1px solid var(--border);
+  padding: 8px 14px;
+  position: sticky;
+  top: 0;
+  background: var(--surface);
+}
