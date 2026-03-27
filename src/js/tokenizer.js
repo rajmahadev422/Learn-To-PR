@@ -1,3 +1,5 @@
+import {mapLang} from "./utils.js";
+
 export function tokenize(md) {
   const regex = /:::(\w+)([^\n]*)\n([\s\S]*?):::/g;
 

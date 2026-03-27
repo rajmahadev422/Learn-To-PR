@@ -50,7 +50,7 @@ function autoCloseToc(time = 3000) {
 window.addEventListener("DOMContentLoaded", async () => {
   const targetNode = document.getElementById("app");
 
-  const observer = new MutationObserver((mutations) => {
+  const observer = new MutationObserver(() => {
     // Clear the list so you don't get duplicates every time the observer fires
     ul.innerHTML = "";
 

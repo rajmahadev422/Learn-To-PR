@@ -9,7 +9,7 @@
 
   <!-- Prism core -->
   <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script> -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap"
@@ -58,7 +58,17 @@
   </footer>
 
   <!-- LANGUAGES -->
-<script src="https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js"></script> -->
+  <script type="module">
+    import "https://cdn.jsdelivr.net/npm/prismjs/prism.js";
+    import "https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js";
+
+    // Now Prism is available globally
+    window.Prism.plugins.autoloader.languages_path =
+      "https://cdn.jsdelivr.net/npm/prismjs/components/";
+
+    Prism.highlightAll();
+  </script>
   <!-- Local modules -->
   <!-- <script src="src/js/utils.js"></script>
   <script src="src/js/sidebar.js"></script>
