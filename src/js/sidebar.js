@@ -87,3 +87,5 @@ async function renderSidebar() {
 
   renderList();
 }
+
+window.renderSidebar = renderSidebar;

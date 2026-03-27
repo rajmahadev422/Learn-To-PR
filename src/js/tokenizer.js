@@ -92,3 +92,6 @@ function extractLines(code, linePart) {
   // fallback
   return code;
 }
+
+window.tokenize = tokenize;
+window.loadIncludes = loadIncludes;

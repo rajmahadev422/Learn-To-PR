@@ -53,3 +53,7 @@ function updateBreadcrumb(page) {
     })
     .join("");
 }
+
+window.getCurrentPage = getCurrentPage;
+window.loadMarkdown = loadMarkdown;
+window.updateBreadcrumb = updateBreadcrumb;

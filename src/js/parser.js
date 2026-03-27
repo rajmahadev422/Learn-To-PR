@@ -52,3 +52,5 @@ function parse(tokens) {
     }
   });
 }
+
+window.parse = parse;

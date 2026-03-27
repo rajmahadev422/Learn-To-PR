@@ -65,3 +65,5 @@ function render(ast) {
     }
   });
 }
+
+window.render = render;
