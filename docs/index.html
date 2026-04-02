@@ -22,6 +22,7 @@
   <link rel="stylesheet" href="styles/style.css">
   <link rel="stylesheet" href="styles/sidebar.css">
   <link rel="stylesheet" href="styles/toc.css">
+  <link rel="stylesheet" href="styles/home.css">
 </head>
 
 <body>
@@ -66,10 +67,21 @@
     const now = new Date();
     document.getElementById("year").innerText = now.getFullYear();
 
-    const gitPath  = "https://raw.githubusercontent.com/rajmahadev422/Learn-To-PR/refs/heads/homepage/";
-    // const gitPath = "../";
+    // const gitPath  = "https://raw.githubusercontent.com/rajmahadev422/Learn-To-PR/refs/heads/homepage/";
+    const gitPath = "../";
+
     // // https://raw.githubusercontent.com/{username}/{repo}/refs/heads/{branch}/doc/{filepath to root}
 
+    async function fetchFolder() {
+      try {
+        const res = await fetch("../doc");
+        const folders = await res.text();
+        console.log("Fetched folders:", folders, res);
+      } catch (error) {
+        console.error("Error fetching folder:", error);
+      }
+    }
+fetchFolder();
   </script>
   <script src="js/theme.js"></script>
   <script src="js/utils.js"></script>

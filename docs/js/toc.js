@@ -2,8 +2,8 @@
 
 const page = getCurrentPage();
 
-const md = page.split(".")[1];
-if (md === "md" || md === "markdown") {
+const md = page && page.split(".")[1];
+if (md && (md === "md" || md === "markdown")) {
   const tocContainer = document.getElementById("toc");
 
   // Create button
