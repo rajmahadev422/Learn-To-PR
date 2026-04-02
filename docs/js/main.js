@@ -46,7 +46,7 @@ async function init() {
 
 async function loadFolder() {
   try {
-    const res = await fetch(`${gitPath}/doc/docs.json`); // ✅ always root doc
+    const res = await fetch(`${gitPath}docs.json`); // ✅ always root doc
     const folders = await res.json();
 
     // const parser = new DOMParser();
