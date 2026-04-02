@@ -1,10 +1,13 @@
-async function renderSidebar() {
+async function renderSidebar(doc) {
     const sidebar = document.getElementById("sidebar");
     sidebar.innerHTML = "";
 
     // Search wrap
     const searchWrap = document.createElement("div");
     searchWrap.className = "search-wrap";
+    const docName = document.createElement("h2");
+    docName.textContent = doc;
+    searchWrap.appendChild(docName);
     const searchInput = document.createElement("input");
     searchInput.placeholder = "Search docs...";
     searchInput.className = "search-box";
@@ -18,7 +21,7 @@ async function renderSidebar() {
 
     const currentHash = window.location.hash.replace(/^#\/?/, "");
 
-    const res = await fetch(`${gitPath}doc/table_of_content.json`);
+    const res = await fetch(`${gitPath}doc/${doc}/table_of_content.json`);
     const data = await res.json();
     function renderList(filter = "") {
         nav.innerHTML = "";
@@ -55,7 +58,7 @@ async function renderSidebar() {
                 hasMatch = true;
 
                 const link = document.createElement("a");
-                link.href = `#/${file.url}`;
+                link.href = `#/doc/${doc}/${file.url}`;
                 link.textContent = file.name;
                 link.className = "sidebar-link";
                 
