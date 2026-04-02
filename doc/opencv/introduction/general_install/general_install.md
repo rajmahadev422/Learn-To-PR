@@ -1,4 +1,4 @@
-# Tutorials installation overview
+# OpenCV installation overview
 
 <!-- @next_tutorial{tutorial_config_reference} -->
 [next](#tutorials/introduction/config_reference/config_reference.markdown)

@@ -99,6 +99,7 @@ body {
   width: 200px;
   padding: 0 10px;
   gap: 10px;
+  text-decoration: none;
   border-right: 1px solid var(--border-subtle);
 }
 

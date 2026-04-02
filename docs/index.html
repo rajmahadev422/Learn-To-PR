@@ -16,7 +16,7 @@
     rel="stylesheet">
 
   <!-- Base location -->
-  <base href="./"> 
+  <base href="./">
 
   <!-- Styles sheets -->
   <link rel="stylesheet" href="styles/style.css">
@@ -29,7 +29,7 @@
   <header id="header">
     <div class="header-left">
       <button id="menuBtn" aria-label="Toggle sidebar">☰</button>
-      <div class="header-logo">DD</div>
+      <a href="#" class="header-logo">DD</a>
       <div class="header-brand">Dev<span>Doc</span></div>
     </div>
     <div class="header-center">
@@ -53,29 +53,28 @@
     <div class="footer-content">
       <p>© <span id="year"></span> Dev-Docs. All rights reserved.</p>
       <div class="footer-links">
-        <a href="https://github.com/rajmahadev422/Doc-Engine.git" target="_blank">GitHub</a>
+        <a href="https://github.com/rajmahadev422/Leanr-To-PR.git" target="_blank">GitHub</a>
       </div>
     </div>
   </footer>
 
   <!-- LANGUAGES -->
-<script src="https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
   <!-- Local modules -->
-   <script>
+  <script>
 
     const now = new Date();
     document.getElementById("year").innerText = now.getFullYear();
 
-    const gitPath  = "https://raw.githubusercontent.com/rajmahadev422/Learn-To-PR/refs/heads/main/";
-    // const gitPath  = "../";
-    // https://raw.githubusercontent.com/{username}/{repo}/refs/heads/{branch}/doc/{filepath to root}
+    const gitPath  = "https://raw.githubusercontent.com/rajmahadev422/Learn-To-PR/refs/heads/homepage/";
+    // const gitPath = "../";
+    // // https://raw.githubusercontent.com/{username}/{repo}/refs/heads/{branch}/doc/{filepath to root}
 
-   </script>
+  </script>
+  <script src="js/theme.js"></script>
   <script src="js/utils.js"></script>
   <script src="js/sidebar.js"></script>
-  <script src="js/tokenizer.js"></script>
-  <script src="js/parser.js"></script>
-  <script src="js/createTabs.js"></script>
+  <script src="js/doc.js"></script>
   <script src="js/main.js"></script>
   <script src="js/toc.js"></script>
 </body>

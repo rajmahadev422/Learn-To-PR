@@ -1,9 +1,6 @@
-Adding (blending) two images using OpenCV
+# Adding (blending) two images using OpenCV
 ---
-<!-- @tableofcontents
 
-@prev_tutorial{tutorial_mat_operations}
-@next_tutorial{tutorial_basic_linear_transform} -->
 | | |
 | --- | --- |
 | [prev](#tutorials/core/mat_operations.markdown) | [next](#tutorials/core/basic_linear_transform/basic_linear_transform.markdown)
@@ -14,8 +11,8 @@ Adding (blending) two images using OpenCV
 | Original author | Ana Huamán |
 | Compatibility | OpenCV >= 3.0 |
 
-We will learn how to blend two images!
-Goal
+> We will learn how to blend two images!
+## Goal
 ----
 
 In this tutorial you will learn:
@@ -23,7 +20,7 @@ In this tutorial you will learn:
 - what is *linear blending* and why it is useful;
 - how to add two images using **addWeighted()**
 
-Theory
+## Theory
 ------
 
 > The explanation below belongs to the book [Computer Vision: Algorithms and Applications](http://szeliski.org/Book/) by Richard Szeliski
@@ -48,7 +45,7 @@ Source Code
 
 :::include{samples/python/tutorial_code/core/AddingImages/adding_images.py}
 
-```markdown
+```
 
 [here](https://raw.githubusercontent.com/opencv/opencv/4.x/samples/cpp/tutorial_code/core/AddingImages/AddingImages.cpp)
 [here](https://raw.githubusercontent.com/opencv/opencv/4.x/samples/java/tutorial_code/core/AddingImages/AddingImages.java)

@@ -1,0 +1,24 @@
+{
+  "introduction": [
+    {
+      "name": "General Installing",
+      "url": "tutorials/introduction/general_install/general_install.md"
+    },
+    {
+      "name": "Install in Windows",
+      "url": "tutorials/introduction/windows_msys2_vscode/window_install_opencv.md"
+    }
+  ],
+  "core": [
+    {
+      "name": "Adding Images",
+      "url": "tutorials/core/adding_images/adding_images.md"
+    }
+  ],
+  "others": [
+    {
+      "name": "F A Q",
+      "url": "faq.markdown"
+    }
+  ]
+}
