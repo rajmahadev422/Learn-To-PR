@@ -31,7 +31,7 @@ async function init() {
     if (!page) {
       const res = await fetch("pages/Home.html");
       const html = await res.text();
-      console.log(html);
+      
       layout.innerHTML = html;
     } else if (page === "doc" || page === "doc") {
       //   const data = await loadFolder();
@@ -47,22 +47,34 @@ async function init() {
 
 async function loadFolder() {
   try {
-    const res = await fetch(`${gitPath}doc`); // ✅ always root doc
-    const html = await res.text();
+    const res = await fetch(`https://api.github.com/repos/rajmahadev422/Learn-To-PR/contents/doc?ref=homepage`, {
+        headers: {
+            "Content-Type": "text/html",
+        }
+    }); // ✅ always root doc
+    const html = await res.json();
+console.log("Folder HTML:", html);
 
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, "text/html");
+    // const parser = new DOMParser();
+    // const doc = parser.parseFromString(html, "text/html");
 
-    const folders = [...doc.querySelectorAll("table a")]
-      .map((a) => a.textContent.trim())
-      .filter((name) => name.endsWith("/") && name !== "../")
-      .map((name) => name.replace("/", ""));
+    // const folders = [...doc.querySelectorAll("table a")]
+    //   .map((a) => a.textContent.trim())
+    //   .filter((name) => name.endsWith("/") && name !== "../")
+    //   .map((name) => name.replace("/", ""));
 
-    const docPage = folders.map((folder) => {
-      return `<li><a href="#doc/${folder}/">${folder}</a></li>`;
-    });
+    // const docPage = folders.map((folder) => {
+    //   return `<li><a href="#doc/${folder}/">${folder}</a></li>`;
+    // });
 
-    return docPage.join("");
+    const docPage =  `<div class="dir">${html.map((item) => {
+      if (item.type === "dir") {
+        return `<li><a href="#doc/${item.name}/">${item.name}</a></li>`;
+      }
+      return "";
+    }).join("")}</div>`;
+
+    return docPage;
   } catch (err) {
     console.error(err);
   }
