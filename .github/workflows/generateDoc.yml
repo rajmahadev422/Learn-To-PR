@@ -12,7 +12,7 @@ jobs:
         with:
           node-version: 18
 
-      - run: node generateDocs.js
+      - run: node .github/scripts/generateDocs.js
 
       - run: |
           git config user.name "github-actions"
