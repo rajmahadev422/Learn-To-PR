@@ -1,6 +1,10 @@
 // ===== MAIN LOGIC =====
 
-async function renderDoc(page, doc) {
+async function renderDoc() {
+  let page = getCurrentPage();
+
+  let doc = page && page.split("/");
+  console.log("Route:", doc, "page:", page);
   renderSidebar(doc[1]);
 
   if (!doc[2]) {
@@ -23,21 +27,16 @@ async function init() {
   overlay.classList.toggle("show");
   const page = getCurrentPage();
 
-  const route = page && page.split("/");
-  console.log("Route:", route, "page:", page);
-
-  const data = await loadFolder();
   try {
     if (!page) {
       const res = await fetch("pages/Home.html");
       const html = await res.text();
-      
+
       layout.innerHTML = html;
     } else if (page === "doc" || page === "doc") {
-      //   const data = await loadFolder();
+        const data = await loadFolder();
       layout.innerHTML = `<h1>Documentation</h1>${data}`;
-    } else await renderDoc(page, route);
-    overlay.classList.remove("show");
+    } else await renderDoc();
   } catch (err) {
     console.error(err);
   }
@@ -47,13 +46,8 @@ async function init() {
 
 async function loadFolder() {
   try {
-    const res = await fetch(`https://api.github.com/repos/rajmahadev422/Learn-To-PR/contents/doc?ref=homepage`, {
-        headers: {
-            "Content-Type": "text/html",
-        }
-    }); // ✅ always root doc
-    const html = await res.json();
-console.log("Folder HTML:", html);
+    const res = await fetch(`${gitPath}/doc/docs.json`); // ✅ always root doc
+    const folders = await res.json();
 
     // const parser = new DOMParser();
     // const doc = parser.parseFromString(html, "text/html");
@@ -63,16 +57,10 @@ console.log("Folder HTML:", html);
     //   .filter((name) => name.endsWith("/") && name !== "../")
     //   .map((name) => name.replace("/", ""));
 
-    // const docPage = folders.map((folder) => {
-    //   return `<li><a href="#doc/${folder}/">${folder}</a></li>`;
-    // });
+    const docPage = `<div><ul>${folders.map((folder) => {
+      return `<li><a href="#doc/${folder}/">${folder}</a></li>`;
+    }).join("")}</ul></div>`;
 
-    const docPage =  `<div class="dir">${html.map((item) => {
-      if (item.type === "dir") {
-        return `<li><a href="#doc/${item.name}/">${item.name}</a></li>`;
-      }
-      return "";
-    }).join("")}</div>`;
 
     return docPage;
   } catch (err) {
