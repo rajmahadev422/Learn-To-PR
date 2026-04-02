@@ -34,8 +34,8 @@ async function init() {
 
       layout.innerHTML = html;
     } else if (page === "doc" || page === "doc") {
-        const data = await loadFolder();
-      layout.innerHTML = `<h1>Documentation</h1>${data}`;
+      const data = await loadFolder();
+      layout.innerHTML = `${data}`;
     } else await renderDoc();
   } catch (err) {
     console.error(err);
@@ -57,10 +57,11 @@ async function loadFolder() {
     //   .filter((name) => name.endsWith("/") && name !== "../")
     //   .map((name) => name.replace("/", ""));
 
-    const docPage = `<div><ul>${folders.map((folder) => {
-      return `<li><a href="#doc/${folder}/">${folder}</a></li>`;
-    }).join("")}</ul></div>`;
-
+    const docPage = `<div class="doc-container"><ul class="doc-list">${folders
+      .map((folder) => {
+        return `<li class="doc-item"><a href="#doc/${folder}/" class="doc-link">${folder}</a></li>`;
+      })
+      .join("")}</ul></div>`;
 
     return docPage;
   } catch (err) {

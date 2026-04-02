@@ -267,3 +267,54 @@
   font-size: 0.9rem;
 }
 
+/* doc Container */
+.doc-container {
+  max-width: 900px;
+  /* margin: 40px auto;
+  padding: 20px; */
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* List */
+.doc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Each item */
+.doc-item {
+  margin-bottom: 10px;
+}
+
+/* Links */
+.doc-link {
+  display: block;
+  padding: 12px 16px;
+  text-decoration: none;
+  color: #1e293b;
+  background: #f8fafc;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+/* Hover effect */
+.doc-link:hover {
+  background: #e0f2fe;
+  border-color: #38bdf8;
+  transform: translateX(4px);
+}
+
+/* Active state (optional JS can add this class) */
+.doc-link.active {
+  background: #0ea5e9;
+  color: white;
+  border-color: #0284c7;
+}
+
+/* Folder icon (optional) */
+.doc-link::before {
+  content: "📁 ";
+}
