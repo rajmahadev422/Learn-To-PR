@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const baseDir = path.join(__dirname, "doc");
+const baseDir = path.join(__dirname, "../../doc");
 
 function getFolders() {
   const items = fs.readdirSync(baseDir, { withFileTypes: true });
