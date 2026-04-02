@@ -47,7 +47,7 @@ async function init() {
 
 async function loadFolder() {
   try {
-    const res = await fetch("/doc"); // ✅ always root doc
+    const res = await fetch(`${gitPath}doc`); // ✅ always root doc
     const html = await res.text();
 
     const parser = new DOMParser();
