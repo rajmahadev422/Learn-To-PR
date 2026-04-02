@@ -13,6 +13,6 @@ function getFolders() {
 
 const folders = getFolders();
 
-fs.writeFileSync("../../docs/js/docs.json", JSON.stringify(folders, null, 2));
+fs.writeFileSync("docs.json", JSON.stringify(folders, null, 2));
 
 console.log("docs.json updated with folders only");
