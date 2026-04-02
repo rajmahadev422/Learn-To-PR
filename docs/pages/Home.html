@@ -1,4 +1,56 @@
-<div>
-  Home Page
-  <a href="#doc">doc</a>
+<div class="home-container">
+  <!-- header / nav area matching given markup -->
+  <div class="brand-header">
+    <div class="logo-area">✨ BaseHome</div>
+    <div class="nav-links">
+      <!-- exactly as provided: first anchor text "doc" href="#doc" -->
+      <a href="#doc" class="nav-doc-link">doc</a>
+      <!-- second anchor text "doc" href="#contributors" -->
+      <a href="#contributors" class="nav-contrib-link">doc</a>
+    </div>
+  </div>
+
+  <!-- hero / main title section -->
+  <div class="hero-section">
+    <h1>Home Page</h1>
+    <p class="tagline">Your central hub for documentation & collaboration</p>
+    <div class="button-group">
+      <a href="#doc" class="btn btn-primary">📘 Explore Docs</a>
+      <a href="#contributors" class="btn btn-secondary">👥 Meet Contributors</a>
+    </div>
+  </div>
+
+  <!-- dynamic content sections that correspond to hash targets -->
+  <div class="content-sections">
+    <!-- Documentation Section (target for #doc) -->
+    <section id="doc" class="info-card doc-section">
+      <div class="card-icon">📄</div>
+      <h2>Documentation Hub</h2>
+      <p>Welcome to the official project documentation. Here you'll find API references, setup guides, architecture
+        overviews, and best practices. Whether you're a new contributor or an experienced developer, our docs are
+        designed to help you succeed.</p>
+      <div class="doc-grid">
+        <div class="doc-item">📘 Getting Started</div>
+        <div class="doc-item">⚙️ Configuration</div>
+        <div class="doc-item">🔌 API Reference</div>
+        <div class="doc-item">🧪 Testing Guide</div>
+      </div>
+      <a href="#" class="fake-link">→ Full documentation library</a>
+    </section>
+
+    <!-- Contributors Section (target for #contributors) -->
+    <section id="contributors" class="info-card contributors-section">
+      <div class="card-icon">🌟</div>
+      <h2>Meet Our Contributors</h2>
+      <p>Our open-source community thrives thanks to passionate people from around the globe. The contributors drive
+        innovation, review code, write docs, and support fellow developers.</p>
+      <div class="contributor-list">
+        <div class="contributor">👩‍💻 Alex Morgan — Lead Architect</div>
+        <div class="contributor">🧑‍🏫 Jamie Lin — Documentation Specialist</div>
+        <div class="contributor">👨‍🎨 Taylor Smith — UI/UX Designer</div>
+        <div class="contributor">🧑‍🔧 Casey Rivera — Core Maintainer</div>
+        <div class="contributor">👩‍💼 Jordan Lee — Community Manager</div>
+      </div>
+      <div class="cta-note">⭐ Become a contributor — check our guidelines!</div>
+    </section>
 </div>

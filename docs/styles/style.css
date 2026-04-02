@@ -90,6 +90,9 @@ body {
   z-index: 100;
   box-shadow: var(--shadow);
   flex-shrink: 0;
+  position: fixed;
+  right: 0;
+  left: 0;
 }
 
 .header-left {
@@ -195,7 +198,8 @@ body {
 #layout {
   display: flex;
   flex: 1;
-  overflow: hidden;
+  margin-top: var(--header-height);
+  /* overflow: hidden; */
 }
 
 /* Menu button */

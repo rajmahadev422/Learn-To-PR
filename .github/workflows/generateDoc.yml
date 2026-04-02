@@ -1,0 +1,22 @@
+on:
+  push:
+    paths:
+      - "doc/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - run: node generateDocs.js
+
+      - run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add docs.json
+          git commit -m "auto update docs.json" || echo "no changes"
+          git push
