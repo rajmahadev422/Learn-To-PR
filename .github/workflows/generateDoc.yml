@@ -1,3 +1,5 @@
+name: Generate Documentation Docs
+
 on:
   push:
     paths:
