@@ -8,8 +8,12 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  overflow: auto;
 }
 
+.home-container::-webkit-scrollbar {
+  display: none;
+}
 /* Brand Header */
 .brand-header {
   backdrop-filter: blur(10px);

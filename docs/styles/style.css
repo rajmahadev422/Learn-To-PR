@@ -199,7 +199,7 @@ body {
   display: flex;
   flex: 1;
   margin-top: var(--header-height);
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
 /* Menu button */
