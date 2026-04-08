@@ -194,9 +194,9 @@ body {
   color: var(--text);
 }
 
-#main-container {
+/* #main-container {
   margin-top: var(--header-height);
-}
+} */
 /* ===== LAYOUT BELOW HEADER ===== */
 #layout {
   display: flex;

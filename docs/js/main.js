@@ -31,11 +31,12 @@ async function init() {
     if (!page) {
       const res = await fetch("pages/Home.html");
       const html = await res.text();
-
       mainContainer.innerHTML = html;
+      mainContainer.style.marginTop = "var(--header-height)";
     } else if (page === "doc" || page === "doc") {
       const data = await loadFolder();
       mainContainer.innerHTML = `${data}`;
+      mainContainer.style.marginTop = "var(--header-height)";
     } else {
       await renderDoc();
     }
