@@ -32,11 +32,13 @@ async function init() {
       const res = await fetch("pages/Home.html");
       const html = await res.text();
 
-      layout.innerHTML = html;
+      mainContainer.innerHTML = html;
     } else if (page === "doc" || page === "doc") {
       const data = await loadFolder();
-      layout.innerHTML = `${data}`;
-    } else await renderDoc();
+      mainContainer.innerHTML = `${data}`;
+    } else {
+      await renderDoc();
+    }
   } catch (err) {
     console.error(err);
   }

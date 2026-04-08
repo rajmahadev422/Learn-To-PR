@@ -4,7 +4,8 @@
 const menuBtn = document.getElementById("menuBtn");
 const sidebar = document.getElementById("sidebar");
 const overlay = document.getElementById("overlay");
-const layout = document.getElementById("layout");
+const mainContainer = document.getElementById("main-container");
+
 menuBtn.onclick = () => {
   sidebar.classList.toggle("show");
 };
