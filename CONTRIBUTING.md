@@ -11,10 +11,10 @@ Every name on this list made their very first (or early) GitHub contribution.
 ## How to Add Your Name
 
 1. Fork this repository
-2. Open this file (`CONTRIBUTORS.md`)
+2. Open this file (`contributors.json`)
 3. Add your name at the bottom of the list in this format:
-```
-- Your Name (@yourgithubusername)
+```json
+- [..., "Your Name"]
 ```
 4. Commit, push, and open a Pull Request!
 
