@@ -4,7 +4,6 @@ async function renderDoc() {
   let page = getCurrentPage();
 
   let doc = page && page.split("/");
-  console.log("Route:", doc, "page:", page);
   renderSidebar(doc[1]);
 
   if (!doc[2]) {
