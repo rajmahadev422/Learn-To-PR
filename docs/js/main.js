@@ -25,17 +25,26 @@ async function renderDoc() {
 async function init() {
   overlay.classList.toggle("show");
   const page = getCurrentPage();
+  mainContainer.innerHTML = "";
 
   try {
     if (!page) {
       const res = await fetch("pages/Home.html");
       const html = await res.text();
       mainContainer.innerHTML = html;
-    } else if (page === "doc" || page === "doc") {
+    } else if (page === "doc") {
       const data = await loadFolder();
       mainContainer.innerHTML = `${data}`;
-    } else {
+    } else if (page.startsWith("doc/")) {
       await renderDoc();
+    }
+    else {
+      const res = await fetch(`pages/404.html`);
+      if (!res.ok) {
+        throw new Error("Page not found");
+      }
+      const html = await res.text();
+      mainContainer.innerHTML = html;
     }
   } catch (err) {
     console.error(err);
