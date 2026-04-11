@@ -192,25 +192,9 @@
 }
 
 /* Documentation Grid */
-.doc-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  margin: 1.5rem 0;
-}
-
-.doc-item {
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  padding: 1rem;
-  border-radius: 12px;
-  text-align: center;
-  font-weight: 600;
-  color: #333;
-  transition: all 0.3s ease;
-}
 
 .doc-item:hover {
-  transform: scale(1.05);
+  /* transform: scale(1.05); */
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
 }
@@ -272,23 +256,13 @@
 }
 
 /* doc Container */
-.doc-container {
-  max-width: 900px;
-  /* margin: 40px auto;
-  padding: 20px; */
-  font-family: system-ui, -apple-system, sans-serif;
-}
+
 
 /* List */
 .doc-list {
   list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-/* Each item */
-.doc-item {
-  margin-bottom: 10px;
+  padding: 10px;
+  overflow: hidden;
 }
 
 /* Links */
@@ -304,21 +278,9 @@
   font-weight: 500;
 }
 
-/* Hover effect */
-.doc-link:hover {
-  background: #e0f2fe;
-  border-color: #38bdf8;
-  transform: translateX(4px);
-}
-
 /* Active state (optional JS can add this class) */
 .doc-link.active {
   background: #0ea5e9;
   color: white;
   border-color: #0284c7;
-}
-
-/* Folder icon (optional) */
-.doc-link::before {
-  content: "📁 ";
 }

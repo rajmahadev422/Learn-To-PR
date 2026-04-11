@@ -50,17 +50,9 @@ async function loadFolder() {
     const res = await fetch(`${gitPath}docs.json`); // ✅ always root doc
     const folders = await res.json();
 
-    // const parser = new DOMParser();
-    // const doc = parser.parseFromString(html, "text/html");
-
-    // const folders = [...doc.querySelectorAll("table a")]
-    //   .map((a) => a.textContent.trim())
-    //   .filter((name) => name.endsWith("/") && name !== "../")
-    //   .map((name) => name.replace("/", ""));
-
     const docPage = `<div class="doc-container"><ul class="doc-list">${folders
       .map((folder) => {
-        return `<li class="doc-item"><a href="#doc/${folder}/" class="doc-link">${folder}</a></li>`;
+        return `<li class="doc-item"><a href="#doc/${folder}/" class="doc-link">📁 ${folder}</a></li>`;
       })
       .join("")}</ul></div>`;
 
